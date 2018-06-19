@@ -1,0 +1,3 @@
+"0","DATA_PATH_CEP<-""/Users/thomasallen/cep_ob3b/data/"""
+"0","DATA_PATH_CEP_PHOT<-paste(DATA_PATH_CEP,""Photometry/"",sep="""")"
+"0","DATA_PATH<-""/Users/thomasallen/cep_ob3b/cepr/data/"""

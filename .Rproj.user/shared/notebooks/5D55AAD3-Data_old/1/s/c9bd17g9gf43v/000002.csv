@@ -1,0 +1,19 @@
+"0","
+
+cd /Users/thomasallen/cep_ob3b/cepr/data
+ls
+head Vphot.csv"
+"1","Data.Rmd
+README.md
+Vphot.csv
+mag,err
+nan,nan
+nan,nan
+nan,nan
+nan,nan
+nan,nan
+nan,nan
+nan,nan
+nan,nan
+nan,nan
+"

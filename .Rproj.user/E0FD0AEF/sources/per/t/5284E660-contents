@@ -1,0 +1,436 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+```{r setup, include=FALSE}
+library(reticulate)
+#, engine.path="/anaconda3/bin/python"
+use_python("/anaconda3/bin/python")
+library(readr)
+library(dplyr)
+library(ggplot2)
+```
+
+
+This page details a portion of the data input and wrangling process for the Cep OB3b data set with a focus on converting the data files from a space delimited (unclear if tabs/spaces/what) format to `.csv` format.  I'm moving forward into the 90's.  The data come from a variatey of sources that I collected/compiled throughout my Ph.D. work.  
+
+I am currently using directories filled with text files for both data and indices.  A tidy format would be preferred to countless index arrays.
+
+This data has a long history.  It originates with data from the *Spitzer* Young Stellar Cluster Survey, and additional *Spitzer* missions.  This accounts for the $3.6 - 24~\mu m$ data.  The X-ray data is from a proposal I helped lead the year before I entered graduate school.  Much of the ramaining data, including the *Hectospec* and *Hectochelle* spectroscopy, was collected while I was a graduate student. It is supplemented by data from other researchers and programs such as $2MASS$. These sources will be acknowledged throughout this document and in a bibliography(**PUT BIBLIOGRAPHY LINK** ).
+
+Over the years I went from using Interactive Data Language (IDL) to python to a mixture of R and Python.  
+
+## Photometry
+
+First let's consider the photometry data.  
+
+```{r}
+DATA_PATH_CEP<-"/Users/thomasallen/cep_ob3b/data/"
+DATA_PATH_CEP_PHOT<-paste(DATA_PATH_CEP,"Photometry/",sep="")
+DATA_PATH<-"/Users/thomasallen/cep_ob3b/cepr/data/"
+```
+Let's take a look at some of the data that provided the foundation for this project.  *Spitzer* band 1 (I may also use the term channel interchangabley with band).  This band is in the mid-infrared part of the spectrum with a central wavelength of $\sim [3.6]~\mu m$.(**PUT LINK TO SPITZER INFO**)
+
+I previously wrote a number of Python scripts to help me work with this data and I don't want that time to have been wasted.  Fortunately, R Markdown allows use of Python code chunks. Unfortunately, it does not seem as if the chunks can communicate with each other.  L'll just deal for now.  If anyone knows a better way, please let me know.
+
+```{bash}
+
+which python
+
+```
+
+```{python}
+
+import sys as sys
+
+print(sys.version)
+print(sys.path)
+
+pvar = 7 + 3
+
+print(pvar)
+
+```
+
+```{r}
+py$pvar
+```
+
+
+In the process we will also use `bash` code chunks to examine what data we have.  And take a look at the first few lines of one of the data files.
+```{bash}
+
+
+cd /Users/thomasallen/cep_ob3b/data/Photometry
+ls
+head CH1phot.dat
+```
+As we can see from the peak into the Ch 1 data we have space delimited columns, there not labeled but the first column is magnitude and the second is error.  We also have a header line that gives us the wavelength and the IDL save file source.
+
+It also tells us that values of `-100.00000` and `10.000000` are being used to indicate missing magnitude and error data, respectively. 
+
+```{python, engine.path="/anaconda3/bin/python"}
+import sys as sys
+from astropy.io import ascii
+import numpy as np
+import os as os
+sys.path.append("/Users/thomasallen/python_scripts/Functions")
+
+from cep_funcs import get_cep_phot,write_cep_phot_csv,get_cep_spec,get_cep_index_sav
+import csv
+
+#Paths to Data
+dir_text_data='/Users/thomasallen/cep_ob3b/data/Photometry/'
+dir_csv_data="/Users/thomasallen/cep_ob3b/cepr/data/"
+
+# Change directory to data origin
+os.chdir(dir_text_data)
+
+band="Vphot"
+
+print('Loading V-band')
+mag,err = get_cep_phot(band)
+
+print(mag)
+
+write_cep_phot_csv(mag,err,filename=band+'.csv',dir_write=dir_csv_data)
+
+```
+I'm not sure this is the most efficient way.  R can read in text files. Let's use the `readr` package (Note: this, and all, packages are loaded in the first R chunk used to set-up the environment).  
+
+In the process we will also use `bash` code chunks to examine what data we have.  And take a look at the first few lines of one of the data files.
+
+Here we can test if the above python code worked.
+```{bash}
+
+
+cd /Users/thomasallen/cep_ob3b/cepr/data
+ls
+head Vphot.csv
+```
+
+Let's load this into R using the `readr` package.
+
+```{r}
+
+vphot.df<-read_csv(paste(DATA_PATH,"Vphot.csv",sep=""))
+NN<-nrow(vphot.df)
+NN
+```
+And maybe a function to check for non-NaN's, aka, real numbers.
+```{r}
+
+count_real <- function(df) {
+    
+    df %>% 
+        mutate(real=(is.na(mag)==0)) %>% 
+        group_by(real) %>% summarise(n=n())
+    
+}
+
+count_real(vphot.df)
+```
+
+
+I was going to use `read_delim` but was having issues with the whitespace.  So I chose a solution that involved writing to `.csv` in python.
+```{r eval=FALSE}
+fn <- paste(DATA_PATH_PHOT,"CH1phot.dat",sep="")
+
+ch1_phot <- read_delim(fn,delim=" ",col_types=list(col_character()),col_names=c("phot"),skip=1)
+ch1_phot
+
+nn<-nrow(ch1_phot)
+
+mag <- vector(mode="numeric",length=nrow(ch1_phot))
+err <- vector(mode="numeric",length=nrow(ch1_phot))
+
+
+#for (ii in 1:nrow(ch1_phot)) {
+#    
+#    #print(ii)
+#    strsplit(as.character(ch1_phot[ii])," ")
+#    #tmp<-strsplit(as.character(ch1_phot[ii])," ")
+#    #mag[ii]<-tmp[1]
+#    #err[ii]<-tmp[2]
+#    
+#}
+print(mag)
+```
+
+Now lets write a loop in python to write the photometric data we want to `.csv` files in my `R ProjectTemplate` `data` directory.
+```{python, engine.path="/anaconda3/bin/python", eval=FALSE}
+import sys as sys
+from astropy.io import ascii
+import numpy as np
+import os as os
+sys.path.append("/Users/thomasallen/python_scripts/Functions")
+
+from cep_funcs import get_cep_phot,write_cep_phot_csv
+import csv
+
+#Paths to Data
+dir_text_data='/Users/thomasallen/cep_ob3b/data/Photometry/'
+dir_csv_data="/Users/thomasallen/cep_ob3b/cepr/data/"
+
+# Change directory to data origin
+os.chdir(dir_text_data)
+
+file_list=["Bphot",
+    "CH1phot",
+    "CH2phot",
+    "CH3phot",
+    "CH4phot",
+    "Haphot",
+    "Hphot",
+    "Iphot",
+    "Jphot",
+    "Kphot",
+    "MIPSphot",
+    "Rphot",
+    "Vphot",
+    "gbell",
+    "gsdss",
+    "ibell",
+    "isdss",
+    "rbell",
+    "rsdss",
+    "ubell",
+    "usdss",
+    "zbell",
+    "zsdss"]
+
+
+for file in file_list:
+
+    mag,err = get_cep_phot(file)
+    write_cep_phot_csv(mag,err,filename=file+'.csv',dir_write="/Users/thomasallen/cep_ob3b/cepr/data/")
+
+```
+
+Now let's check the directory and see if the files are there.
+```{bash}
+
+cd /Users/thomasallen/cep_ob3b/cepr/data/
+ls
+```
+
+There they are.
+
+## Astrometry
+
+Now we will try to do the same with the astrometry data.  We have two files, one from the $2MASS$ dataset and one from our *Spitzer* band 2 data.
+
+```{r}
+DATA_PATH_CEP_ASTR<-paste(DATA_PATH_CEP,"Astrometry/",sep="")
+```
+
+```{bash}
+
+
+cd /Users/thomasallen/cep_ob3b/data/Astrometry
+ls
+head Astrometry_Ch1band.dat
+```
+We see that we have a header listing $RA$ and $Dec$ and non data are given with $0.0$.  Also, the coordinates are given in decimal notation, and it is not listed but they are equinox J2000.
+
+Now lets write a loop in python to write the astrometric data we want to `.csv` files in my `R ProjectTemplate` `data` directory.
+```{python, engine.path="/anaconda3/bin/python", eval=FALSE}
+import sys as sys
+from astropy.io import ascii
+import numpy as np
+import os as os
+sys.path.append("/Users/thomasallen/python_scripts/Functions")
+
+from cep_funcs import get_cep_astr,write_cep_astr_csv
+import csv
+
+#Paths to Data
+dir_text_data='/Users/thomasallen/cep_ob3b/data/Astrometry/'
+dir_csv_data="/Users/thomasallen/cep_ob3b/cepr/data/"
+
+# Change directory to data origin
+os.chdir(dir_text_data)
+
+file_list=["Ch1","H"]
+
+
+for file in file_list:
+
+    ra,dec = get_cep_astr(astr_dat=file)
+    write_cep_astr_csv(ra,dec,filename=file+'astr.csv',dir_write="/Users/thomasallen/cep_ob3b/cepr/data/")
+
+```
+
+## Spectroscopy
+
+I compiled medium and high resolution spectroscopy for stars in this region.  Let's take a look at the data.  
+```{r}
+DATA_PATH_CEP_SPEC<-paste(DATA_PATH_CEP,"Spectroscopy/",sep="")
+```
+
+```{bash}
+
+
+cd /Users/thomasallen/cep_ob3b/data/Spectroscopy
+ls
+```
+The file we immediatly want is `Spectroscopy.dat`.  It has the following columns: `spec`, `chelle`,`spt`,`spterr`,`tio`,`tior`,`cah`,`cahr`,`spt_old`,`spterr_old`. 
+
+```{python, engine.path="/anaconda3/bin/python", eval=FALSE}
+import sys as sys
+from astropy.io import ascii
+import numpy as np
+import os as os
+sys.path.append("/Users/thomasallen/python_scripts/Functions")
+
+from cep_funcs import get_cep_spec,write_cep_spec_csv
+import csv
+
+#Paths to Data
+dir_text_data='/Users/thomasallen/cep_ob3b/data/Spectroscopy/'
+dir_csv_data="/Users/thomasallen/cep_ob3b/cepr/data/"
+
+# Change directory to data origin
+os.chdir(dir_text_data)
+
+spec = get_cep_spec("spec")
+chelle = get_cep_spec("chelle")
+spt = get_cep_spec("spt")
+spterr = get_cep_spec("spterr")
+tio = get_cep_spec("tio")
+tior = get_cep_spec("tior")
+cah = get_cep_spec("cah")
+cahr = get_cep_spec("cahr")
+spt_old = get_cep_spec("spt_old")
+spterr_old = get_cep_spec("spterr_old")
+
+
+write_cep_spec_csv(spec,chelle,spt,spterr,tio,tior,cah,cahr,spt_old,spterr_old,filename='Spectroscopy.csv',dir_write="/Users/thomasallen/cep_ob3b/cepr/data/")
+```
+
+## Spectroscopic derived Quantities
+These quantities are bolometric luminosity, effective temperature and surface area.  I think these are based on the Allen et al. 2014 extinction law and the Dottar et al. 2008 YSO models.  I will update this when I know for sure.  (Expect more regarding the extinction law.)
+
+```{r}
+DATA_PATH_CEP_SPEC<-paste(DATA_PATH_CEP,"Properties/",sep="")
+```
+
+```{bash}
+
+
+cd /Users/thomasallen/cep_ob3b/data/Properties
+ls
+```
+The file we immediatly want is `lbol_teff.dat`.  It has the following columns: `lbol`, `teff`,`SA`.
+
+```{python, engine.path="/anaconda3/bin/python", eval=TRUE}
+import sys as sys
+from astropy.io import ascii
+import numpy as np
+import os as os
+sys.path.append("/Users/thomasallen/python_scripts/Functions")
+
+from cep_funcs import get_cep_spec_properties,write_cep_spec_properties_csv
+import csv
+
+#Paths to Data
+dir_text_data='/Users/thomasallen/cep_ob3b/data/Properties/'
+dir_csv_data="/Users/thomasallen/cep_ob3b/cepr/data/"
+
+# Change directory to data origin
+os.chdir(dir_text_data)
+
+datap = get_cep_spec_properties()
+
+write_cep_spec_properties_csv(datap,filename='lbol_teff_sa.csv',dir_write="/Users/thomasallen/cep_ob3b/cepr/data/")
+```
+
+## X-ray properties
+
+```{bash, eval=TRUE}
+
+/anaconda3/bin/python /Users/thomasallen/python_scripts/Functions/xray_sav2csv.py
+
+cp /Users/thomasallen/cep_ob3b/data/Properties/xray_properties_anchors_red_maxxray.csv /Users/thomasallen/cep_ob3b/cepr/data/maxxray.csv
+cp /Users/thomasallen/cep_ob3b/data/Properties/xray_properties_anchors_red_medxray.csv /Users/thomasallen/cep_ob3b/cepr/data/medxray.csv
+cp /Users/thomasallen/cep_ob3b/data/Properties/xray_properties_anchors_red_minxray.csv /Users/thomasallen/cep_ob3b/cepr/data/minxray.csv
+
+```
+
+
+
+## Indices
+
+At the time it seemed easier to keep track of certain catagorical variables using arrays of indices.  For instance, to keep track of circumstellar class (class 0/1 being protostar with envelope, class 2 being young star with disk, class 3/photospheric being (young) star with no disk, and class td being transitions disk) I kept an array with indices corresponding to each group, 1 if the row belonged to group 0 otherwise.  It might be easier to treat some of these as multilevel chatagorical variables, (variable `disk` taking levels c1,c2,td,etc.).
+
+```{r}
+DATA_PATH_CEP_IND<-paste(DATA_PATH_CEP,"Indices/",sep="")
+```
+
+```{bash}
+cd /Users/thomasallen/cep_ob3b/data/Indices
+ls
+pwd
+ls *_sav.index
+```
+Which ones can be combined? 
+
+* Cluster Location:
+    + `east_sav.index`  -   Objects in the East subcluster
+    + `west_sav.index`  -   Objects in the West subcluster
+    + `wnw_only.index`  -   Objects in the NW portion of the Cloud (encompasing Cep OB3b)
+
+* Protoplanetary Disk status (Allen et al. 2012):
+    + `wc1_sav.index`   -   Class 1 protostar with envelop
+    + `wc2_sav.index`   -   Class 2 young star with protoplanetary disk
+    + `wtd_sav.index`   -   Transition Disk opbjects, disks with inner gaps
+    + `wc3_sav.index`   -   Class 3/photospheric, cannot differentiat young or ms with IR alone
+    + `wysov_sav.index` -   Optically selected potential young stars
+
+* X-ray status:
+    + `wanc_sav.index`  -   Has an X-ray detection (can be as low as one photon)
+    + `wacis_sav.index` - Star is in the *Chandra* ACIS field-of-view
+
+Now lets take a look at one of these files.  Since they correspond to index arrays they are a list of numbers corresponding to different rows in the data arrays.  Fortunatly, all these data arrays were designed to have the same number of rows ($255884$) with each row corresponding to the same object.  (I really need to make this more robust, look for a future post about turning all of these `.csv`'s into a SQL/sqlite database).
+
+```{bash}
+cd /Users/thomasallen/cep_ob3b/data/Indices
+head wc1_sav.index
+
+#DATA_PATH = "/Users/thomasallen/cep_ob3b/cepr/data/"
+
+cp east_sav.index /Users/thomasallen/cep_ob3b/cepr/data/east.csv
+cp west_sav.index /Users/thomasallen/cep_ob3b/cepr/data/west.csv
+cp wnw_only_sav.index /Users/thomasallen/cep_ob3b/cepr/data/wnw_only.csv
+cp wc1_sav.index /Users/thomasallen/cep_ob3b/cepr/data/wc1.csv
+cp wc2_sav.index /Users/thomasallen/cep_ob3b/cepr/data/wc2.csv
+cp wtd_sav.index /Users/thomasallen/cep_ob3b/cepr/data/wtd.csv
+cp wc3_sav.index /Users/thomasallen/cep_ob3b/cepr/data/wc3.csv
+cp wysov_sav.index /Users/thomasallen/cep_o3b/cepr/data/wysov.csv
+cp wanc_sav.index /Users/thomasallen/cep_ob3b/cepr/data/wanc.csv
+cp wacis_sav.index /Users/thomasallen/cep_ob3b/cepr/data/wacis.csv
+
+```
+
+These are just one column, so I'll read them directly into R.  We'll consider each group at a time.  First, cluster location (i'm ambivalent about adding membership here because it can be ambiguous; optical says this, X-ray says that).  So just location along line of sight.
+
+One more thing.  In IDL and Python, counting starts at zero.  In R, it starts at one.  Thus we will need to add 1 to each array.
+```{r}
+
+east <- read_csv(paste(DATA_PATH,"east.csv",sep=""))
+east
+east <- east + 1
+east
+west <- read_csv(paste(DATA_PATH,"west.csv",sep=""))
+west <- west + 1
+cep <- read_csv(paste(DATA_PATH,"wnw_only.csv",sep=""))
+cep <- cep + 1
+
+```
+
+I will take this up further in the `munge` directory.  There you will find info about the preprocessing steps including turing index arrays into categorical variables.
+

@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1523986092543.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4050796109",
+    "id" : "B181F47A",
+    "lastKnownWriteTime" : 1524030322,
+    "last_content_update" : 1524030322785,
+    "path" : "~/cep_ob3b/cepr/lib/helpers.R",
+    "project_path" : "lib/helpers.R",
+    "properties" : {
+        "cursorPosition" : "17,4",
+        "marks" : "<:11,0\n>:19,-1",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

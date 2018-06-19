@@ -1,0 +1,212 @@
+---
+title: "Cep OB3b Data"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+library(reticulate)
+library(readr)
+library(dplyr)
+library(ggplot2)
+```
+
+
+This page details the data input and wrangling process for the Cep OB3b data set.  The data come from a variatey of sources that I collected/compiled throughout my Ph.D. work.  
+
+I am currently using directories filled with text files for both data and indices.  A tidy format would be preferred to countless index arrays.
+
+This data has a long history.  It originates with data from the *Spitzer* Young Stellar Cluster Survey, and additional *Spitzer* missions.  This accounts for the $3.6 - 24~\mu m$ data.  The X-ray data is from a proposal I helped lead the year before I entered graduate school.  Much of the ramaining data, including the *Hectospec* and *Hectochelle* spectroscopy, was collected while I was a graduate student. It is supplemented by data from other researchers and programs such as $2MASS$. These sources will be acknowledged throughout this document and in a bibliography(**PUT BIBLIOGRAPHY LINK** ).
+
+Over the years I went from using Interactive Data Language (IDL) to python to a mixture of R and Python.  
+
+## Photometry
+
+First let's consider the photometry data.  
+
+```{r}
+DATA_PATH_CEP<-"/Users/thomasallen/cep_ob3b/data/"
+DATA_PATH_CEP_PHOT<-paste(DATA_PATH_CEP,"Photometry/",sep="")
+DATA_PATH<-"/Users/thomasallen/cep_ob3b/cepr/data/"
+```
+Let's take a look at some of the data that provided the foundation for this project.  *Spitzer* band 1 (I may also use the term channel interchangabley with band).  This band is in the mid-infrared part of the spectrum with a central wavelength of $\sim [3.6]~\mu m$.(**PUT LINK TO SPITZER INFO**)
+
+I previously wrote a number of Python scripts to help me work with this data and I don't want that time to have been wasted.  Fortunately, R Markdown allows use of Python code chunks. Unfortunately, it does not seem as if the chunks can communicate with each other.  L'll just deal for now.  If anyone knows a better way, please let me know.
+
+```{bash}
+
+which python
+
+```
+
+```{python, engine.path="/anaconda3/bin/python"}
+
+import sys as sys
+
+print(sys.version)
+print(sys.path)
+
+
+```
+
+In the process we will also use `bash` code chunks to examine what data we have.  And take a look at the first few lines of one of the data files.
+```{bash}
+
+
+cd /Users/thomasallen/cep_ob3b/data/Photometry
+ls
+head CH1phot.dat
+```
+As we can see from the peak into the Ch 1 data we have space delimited columns, there not labeled but the first column is magnitude and the second is error.  We also have a header line that gives us the wavelength and the IDL save file source.
+
+It also tells us that values of `-100.00000` and `10.000000` are being used to indicate missing magnitude and error data, respectively. 
+
+```{python, engine.path="/anaconda3/bin/python"}
+import sys as sys
+from astropy.io import ascii
+import numpy as np
+import os as os
+sys.path.append("/Users/thomasallen/python_scripts/Functions")
+
+from cep_funcs import get_cep_phot,write_cep_phot_csv,get_cep_spec,get_cep_index_sav
+import csv
+
+#Paths to Data
+dir_text_data='/Users/thomasallen/cep_ob3b/data/Photometry/'
+dir_csv_data="/Users/thomasallen/cep_ob3b/cepr/data/"
+
+# Change directory to data origin
+os.chdir(dir_text_data)
+
+band="Vphot"
+
+print('Loading V-band')
+mag,err = get_cep_phot(band)
+
+print(mag)
+
+write_cep_phot_csv(mag,err,filename=band+'.csv',dir_write=dir_csv_data)
+
+```
+I'm not sure this is the most efficient way.  R can read in text files. Let's use the `readr` package (Note: this, and all, packages are loaded in the first R chunk used to set-up the environment).  
+
+In the process we will also use `bash` code chunks to examine what data we have.  And take a look at the first few lines of one of the data files.
+
+Here we can test if the above python code worked.
+```{bash}
+
+
+cd /Users/thomasallen/cep_ob3b/cepr/data
+ls
+head Vphot.csv
+```
+
+Let's load this into R using the `readr` package.
+
+```{r}
+
+vphot.df<-read_csv(paste(DATA_PATH,"Vphot.csv",sep=""))
+
+```
+And maybe a function to check for non-NaN's, aka, real numbers.
+```{r}
+
+count_real <- function(df) {
+    
+    df %>% 
+        mutate(real=(is.na(mag)==0)) %>% 
+        group_by(real) %>% summarise(n=n())
+    
+}
+
+count_real(vphot.df)
+```
+
+
+I was going to use `read_delim` but was having issues with the whitespace.  So I chose a solution that involved writing to `.csv` in python.
+```{r eval=FALSE}
+fn <- paste(DATA_PATH_PHOT,"CH1phot.dat",sep="")
+
+ch1_phot <- read_delim(fn,delim=" ",col_types=list(col_character()),col_names=c("phot"),skip=1)
+ch1_phot
+
+nn<-nrow(ch1_phot)
+
+mag <- vector(mode="numeric",length=nrow(ch1_phot))
+err <- vector(mode="numeric",length=nrow(ch1_phot))
+
+
+#for (ii in 1:nrow(ch1_phot)) {
+#    
+#    #print(ii)
+#    strsplit(as.character(ch1_phot[ii])," ")
+#    #tmp<-strsplit(as.character(ch1_phot[ii])," ")
+#    #mag[ii]<-tmp[1]
+#    #err[ii]<-tmp[2]
+#    
+#}
+print(mag)
+```
+
+Now lets write a loop in python to write the photometric data we want to `.csv` files in my `R ProjectTemplate` `data` directory.
+```{python, engine.path="/anaconda3/bin/python", eval=FALSE}
+import sys as sys
+from astropy.io import ascii
+import numpy as np
+import os as os
+sys.path.append("/Users/thomasallen/python_scripts/Functions")
+
+from cep_funcs import get_cep_phot,write_cep_phot_csv,get_cep_spec,get_cep_index_sav
+import csv
+
+#Paths to Data
+dir_text_data='/Users/thomasallen/cep_ob3b/data/Photometry/'
+dir_csv_data="/Users/thomasallen/cep_ob3b/cepr/data/"
+
+# Change directory to data origin
+os.chdir(dir_text_data)
+
+file_list=["Bphot",
+    "CH1phot",
+    "CH2phot",
+    "CH3phot",
+    "CH4phot",
+    "Haphot",
+    "Hphot",
+    "Iphot",
+    "Jphot",
+    "Kphot",
+    "MIPSphot",
+    "Rphot",
+    "Vphot",
+    "gbell",
+    "gsdss",
+    "ibell",
+    "isdss",
+    "rbell",
+    "rsdss",
+    "ubell",
+    "usdss",
+    "zbell",
+    "zsdss"]
+
+
+for file in file_list:
+
+    mag,err = get_cep_phot(file)
+    write_cep_phot_csv(mag,err,filename=file+'.csv',dir_write="/Users/thomasallen/cep_ob3b/cepr/data/")
+
+```
+
+Now let's check the directory and see if the files are there.
+```{bash}
+
+cd /Users/thomasallen/cep_ob3b/cepr/data/
+ls
+```
+
+There they are.
+
+## Astrometry
+

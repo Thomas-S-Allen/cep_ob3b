@@ -1,0 +1,28 @@
+"0","import sys as sys
+from astropy.io import ascii
+import numpy as np
+import os as os
+sys.path.append(""/Users/thomasallen/python_scripts/Functions"")
+
+from cep_funcs import get_cep_phot,write_cep_phot_csv,get_cep_spec,get_cep_index_sav
+import csv
+
+#Paths to Data
+dir_text_data='/Users/thomasallen/cep_ob3b/data/Photometry/'
+dir_csv_data=""/Users/thomasallen/cep_ob3b/cepr/data/""
+
+# Change directory to data origin
+os.chdir(dir_text_data)
+
+band=""Vphot""
+
+print('Loading V-band')
+mag,err = get_cep_phot(band)
+
+print(mag)
+
+write_cep_phot_csv(mag,err,filename=band+'.csv',dir_write=dir_csv_data)
+"
+"1","Loading V-band
+[ nan  nan  nan ...,  nan  nan  nan]
+"

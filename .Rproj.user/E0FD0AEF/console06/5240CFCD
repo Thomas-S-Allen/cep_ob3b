@@ -1,0 +1,231 @@
+]0;~/cep_ob3b/cepr[?1034hHabanero:cepr thomasallen$ [KHabanero:cepr thomasallen$ ls
+README.md	config		graphs		profiling
+TODO		data		lib		reports
+cache		diagnostics	logs		src
+cepr.Rproj	docs		munge		tests
+]0;~/cep_ob3b/ceprHabanero:cepr thomasallen$ cd data
+]0;~/cep_ob3b/cepr/dataHabanero:data thomasallen$ ls -lrt
+total 160536
+-rw-r--r--  1 thomasallen  staff       151 Apr 14 21:48 README.md
+-rw-r--r--  1 thomasallen  staff   2114971 Apr 15 15:14 Bphot.csv
+-rw-r--r--  1 thomasallen  staff   5047320 Apr 15 15:14 CH1phot.csv
+-rw-r--r--  1 thomasallen  staff   4873733 Apr 15 15:15 CH2phot.csv
+-rw-r--r--  1 thomasallen  staff   2717571 Apr 15 15:15 CH3phot.csv
+-rw-r--r--  1 thomasallen  staff   2704086 Apr 15 15:15 CH4phot.csv
+-rw-r--r--  1 thomasallen  staff   2155051 Apr 15 15:15 Haphot.csv
+-rw-r--r--  1 thomasallen  staff   2541390 Apr 15 15:15 Hphot.csv
+-rw-r--r--  1 thomasallen  staff   2292037 Apr 15 15:16 Iphot.csv
+-rw-r--r--  1 thomasallen  staff   2578616 Apr 15 15:16 Jphot.csv
+-rw-r--r--  1 thomasallen  staff   2495378 Apr 15 15:16 Kphot.csv
+-rw-r--r--  1 thomasallen  staff   2084704 Apr 15 15:16 MIPSphot.csv
+-rw-r--r--  1 thomasallen  staff   2155037 Apr 15 15:17 Rphot.csv
+-rw-r--r--  1 thomasallen  staff   2089672 Apr 15 15:17 gbell.csv
+-rw-r--r--  1 thomasallen  staff   2261564 Apr 15 15:17 gsdss.csv
+-rw-r--r--  1 thomasallen  staff   2090362 Apr 15 15:17 ibell.csv
+-rw-r--r--  1 thomasallen  staff   2283379 Apr 15 15:18 isdss.csv
+-rw-r--r--  1 thomasallen  staff   2088867 Apr 15 15:18 rbell.csv
+-rw-r--r--  1 thomasallen  staff   2275141 Apr 15 15:18 rsdss.csv
+-rw-r--r--@ 1 thomasallen  staff      6245 Apr 15 15:18 Data_old.Rmd
+-rw-r--r--  1 thomasallen  staff   2090210 Apr 15 15:18 ubell.csv
+-rw-r--r--  1 thomasallen  staff   2250885 Apr 15 15:18 usdss.csv
+-rw-r--r--  1 thomasallen  staff   2088143 Apr 15 15:18 zbell.csv
+-rw-r--r--  1 thomasallen  staff   2267876 Apr 15 15:19 zsdss.csv
+-rw-r--r--  1 thomasallen  staff   8324323 Apr 15 15:35 Ch1astr.csv
+-rw-r--r--  1 thomasallen  staff   2877200 Apr 15 15:35 Hastr.csv
+-rw-r--r--  1 thomasallen  staff    794438 Apr 15 15:36 Data.nb.html
+-rw-r--r--  1 thomasallen  staff    770905 Apr 15 15:37 Data.html
+-rw-r--r--  1 thomasallen  staff  10843399 Apr 15 16:42 Spectroscopy.csv
+-rw-r--r--  1 thomasallen  staff   2159777 Apr 15 17:53 Vphot.csv
+-rw-r--r--  1 thomasallen  staff    777360 Apr 15 17:53 Data_Conversion_To_CSV.html
+-rw-r--r--@ 1 thomasallen  staff     12501 Apr 15 18:55 Data_Conversion_To_CSV.Rmd
+-rw-r--r--  1 thomasallen  staff      6919 Apr 15 20:56 east_sav.csv
+]0;~/cep_ob3b/cepr/dataHabanero:data thomasallen$ ls -lrt
+total 160536
+-rw-r--r--  1 thomasallen  staff       151 Apr 14 21:48 README.md
+-rw-r--r--  1 thomasallen  staff   2114971 Apr 15 15:14 Bphot.csv
+-rw-r--r--  1 thomasallen  staff   5047320 Apr 15 15:14 CH1phot.csv
+-rw-r--r--  1 thomasallen  staff   4873733 Apr 15 15:15 CH2phot.csv
+-rw-r--r--  1 thomasallen  staff   2717571 Apr 15 15:15 CH3phot.csv
+-rw-r--r--  1 thomasallen  staff   2704086 Apr 15 15:15 CH4phot.csv
+-rw-r--r--  1 thomasallen  staff   2155051 Apr 15 15:15 Haphot.csv
+-rw-r--r--  1 thomasallen  staff   2541390 Apr 15 15:15 Hphot.csv
+-rw-r--r--  1 thomasallen  staff   2292037 Apr 15 15:16 Iphot.csv
+-rw-r--r--  1 thomasallen  staff   2578616 Apr 15 15:16 Jphot.csv
+-rw-r--r--  1 thomasallen  staff   2495378 Apr 15 15:16 Kphot.csv
+-rw-r--r--  1 thomasallen  staff   2084704 Apr 15 15:16 MIPSphot.csv
+-rw-r--r--  1 thomasallen  staff   2155037 Apr 15 15:17 Rphot.csv
+-rw-r--r--  1 thomasallen  staff   2089672 Apr 15 15:17 gbell.csv
+-rw-r--r--  1 thomasallen  staff   2261564 Apr 15 15:17 gsdss.csv
+-rw-r--r--  1 thomasallen  staff   2090362 Apr 15 15:17 ibell.csv
+-rw-r--r--  1 thomasallen  staff   2283379 Apr 15 15:18 isdss.csv
+-rw-r--r--  1 thomasallen  staff   2088867 Apr 15 15:18 rbell.csv
+-rw-r--r--  1 thomasallen  staff   2275141 Apr 15 15:18 rsdss.csv
+-rw-r--r--@ 1 thomasallen  staff      6245 Apr 15 15:18 Data_old.Rmd
+-rw-r--r--  1 thomasallen  staff   2090210 Apr 15 15:18 ubell.csv
+-rw-r--r--  1 thomasallen  staff   2250885 Apr 15 15:18 usdss.csv
+-rw-r--r--  1 thomasallen  staff   2088143 Apr 15 15:18 zbell.csv
+-rw-r--r--  1 thomasallen  staff   2267876 Apr 15 15:19 zsdss.csv
+-rw-r--r--  1 thomasallen  staff   8324323 Apr 15 15:35 Ch1astr.csv
+-rw-r--r--  1 thomasallen  staff   2877200 Apr 15 15:35 Hastr.csv
+-rw-r--r--  1 thomasallen  staff    794438 Apr 15 15:36 Data.nb.html
+-rw-r--r--  1 thomasallen  staff    770905 Apr 15 15:37 Data.html
+-rw-r--r--  1 thomasallen  staff  10843399 Apr 15 16:42 Spectroscopy.csv
+-rw-r--r--  1 thomasallen  staff   2159777 Apr 15 17:53 Vphot.csv
+-rw-r--r--  1 thomasallen  staff    777360 Apr 15 17:53 Data_Conversion_To_CSV.html
+-rw-r--r--  1 thomasallen  staff      6919 Apr 15 20:56 east_sav.csv
+-rw-r--r--@ 1 thomasallen  staff     13541 Apr 15 20:59 Data_Conversion_To_CSV.Rmd
+]0;~/cep_ob3b/cepr/dataHabanero:data thomasallen$ ls
+Bphot.csv			Vphot.csv
+CH1phot.csv			east_sav.csv
+CH2phot.csv			gbell.csv
+CH3phot.csv			gsdss.csv
+CH4phot.csv			ibell.csv
+Ch1astr.csv			isdss.csv
+Data.html			rbell.csv
+Data.nb.html			rsdss.csv
+Data_Conversion_To_CSV.Rmd	ubell.csv
+Data_Conversion_To_CSV.html	usdss.csv
+Data_old.Rmd			wacis_sav.csv
+Haphot.csv			wanc_sav.csv
+Hastr.csv			wc1_sav.csv
+Hphot.csv			wc2_sav.csv
+Iphot.csv			wc3_sav.csv
+Jphot.csv			west_sav.csv
+Kphot.csv			wtd_sav.csv
+MIPSphot.csv			wysov_sav.csv
+README.md			zbell.csv
+Rphot.csv			zsdss.csv
+Spectroscopy.csv
+]0;~/cep_ob3b/cepr/dataHabanero:data thomasallen$ ls-[K lrt
+ls: lrt: No such file or directory
+]0;~/cep_ob3b/cepr/dataHabanero:data thomasallen$ ls -lrt
+total 161280
+-rw-r--r--  1 thomasallen  staff       151 Apr 14 21:48 README.md
+-rw-r--r--  1 thomasallen  staff   2114971 Apr 15 15:14 Bphot.csv
+-rw-r--r--  1 thomasallen  staff   5047320 Apr 15 15:14 CH1phot.csv
+-rw-r--r--  1 thomasallen  staff   4873733 Apr 15 15:15 CH2phot.csv
+-rw-r--r--  1 thomasallen  staff   2717571 Apr 15 15:15 CH3phot.csv
+-rw-r--r--  1 thomasallen  staff   2704086 Apr 15 15:15 CH4phot.csv
+-rw-r--r--  1 thomasallen  staff   2155051 Apr 15 15:15 Haphot.csv
+-rw-r--r--  1 thomasallen  staff   2541390 Apr 15 15:15 Hphot.csv
+-rw-r--r--  1 thomasallen  staff   2292037 Apr 15 15:16 Iphot.csv
+-rw-r--r--  1 thomasallen  staff   2578616 Apr 15 15:16 Jphot.csv
+-rw-r--r--  1 thomasallen  staff   2495378 Apr 15 15:16 Kphot.csv
+-rw-r--r--  1 thomasallen  staff   2084704 Apr 15 15:16 MIPSphot.csv
+-rw-r--r--  1 thomasallen  staff   2155037 Apr 15 15:17 Rphot.csv
+-rw-r--r--  1 thomasallen  staff   2089672 Apr 15 15:17 gbell.csv
+-rw-r--r--  1 thomasallen  staff   2261564 Apr 15 15:17 gsdss.csv
+-rw-r--r--  1 thomasallen  staff   2090362 Apr 15 15:17 ibell.csv
+-rw-r--r--  1 thomasallen  staff   2283379 Apr 15 15:18 isdss.csv
+-rw-r--r--  1 thomasallen  staff   2088867 Apr 15 15:18 rbell.csv
+-rw-r--r--  1 thomasallen  staff   2275141 Apr 15 15:18 rsdss.csv
+-rw-r--r--@ 1 thomasallen  staff      6245 Apr 15 15:18 Data_old.Rmd
+-rw-r--r--  1 thomasallen  staff   2090210 Apr 15 15:18 ubell.csv
+-rw-r--r--  1 thomasallen  staff   2250885 Apr 15 15:18 usdss.csv
+-rw-r--r--  1 thomasallen  staff   2088143 Apr 15 15:18 zbell.csv
+-rw-r--r--  1 thomasallen  staff   2267876 Apr 15 15:19 zsdss.csv
+-rw-r--r--  1 thomasallen  staff   8324323 Apr 15 15:35 Ch1astr.csv
+-rw-r--r--  1 thomasallen  staff   2877200 Apr 15 15:35 Hastr.csv
+-rw-r--r--  1 thomasallen  staff    794438 Apr 15 15:36 Data.nb.html
+-rw-r--r--  1 thomasallen  staff    770905 Apr 15 15:37 Data.html
+-rw-r--r--  1 thomasallen  staff  10843399 Apr 15 16:42 Spectroscopy.csv
+-rw-r--r--  1 thomasallen  staff   2159777 Apr 15 17:53 Vphot.csv
+-rw-r--r--  1 thomasallen  staff    777360 Apr 15 17:53 Data_Conversion_To_CSV.html
+-rw-r--r--@ 1 thomasallen  staff     13541 Apr 15 20:59 Data_Conversion_To_CSV.Rmd
+-rw-r--r--  1 thomasallen  staff      6919 Apr 15 21:00 east_sav.csv
+-rw-r--r--  1 thomasallen  staff      4758 Apr 15 21:00 west_sav.csv
+-rw-r--r--  1 thomasallen  staff       780 Apr 15 21:00 wc1_sav.csv
+-rw-r--r--  1 thomasallen  staff      8861 Apr 15 21:00 wc2_sav.csv
+-rw-r--r--  1 thomasallen  staff       642 Apr 15 21:00 wtd_sav.csv
+-rw-r--r--  1 thomasallen  staff    189041 Apr 15 21:00 wc3_sav.csv
+-rw-r--r--  1 thomasallen  staff     11288 Apr 15 21:00 wysov_sav.csv
+-rw-r--r--  1 thomasallen  staff      5097 Apr 15 21:00 wanc_sav.csv
+-rw-r--r--  1 thomasallen  staff    137388 Apr 15 21:00 wacis_sav.csv
+]0;~/cep_ob3b/cepr/dataHabanero:data thomasallen$ ls -lrt
+total 161280
+-rw-r--r--  1 thomasallen  staff       151 Apr 14 21:48 README.md
+-rw-r--r--  1 thomasallen  staff   2114971 Apr 15 15:14 Bphot.csv
+-rw-r--r--  1 thomasallen  staff   5047320 Apr 15 15:14 CH1phot.csv
+-rw-r--r--  1 thomasallen  staff   4873733 Apr 15 15:15 CH2phot.csv
+-rw-r--r--  1 thomasallen  staff   2717571 Apr 15 15:15 CH3phot.csv
+-rw-r--r--  1 thomasallen  staff   2704086 Apr 15 15:15 CH4phot.csv
+-rw-r--r--  1 thomasallen  staff   2155051 Apr 15 15:15 Haphot.csv
+-rw-r--r--  1 thomasallen  staff   2541390 Apr 15 15:15 Hphot.csv
+-rw-r--r--  1 thomasallen  staff   2292037 Apr 15 15:16 Iphot.csv
+-rw-r--r--  1 thomasallen  staff   2578616 Apr 15 15:16 Jphot.csv
+-rw-r--r--  1 thomasallen  staff   2495378 Apr 15 15:16 Kphot.csv
+-rw-r--r--  1 thomasallen  staff   2084704 Apr 15 15:16 MIPSphot.csv
+-rw-r--r--  1 thomasallen  staff   2155037 Apr 15 15:17 Rphot.csv
+-rw-r--r--  1 thomasallen  staff   2089672 Apr 15 15:17 gbell.csv
+-rw-r--r--  1 thomasallen  staff   2261564 Apr 15 15:17 gsdss.csv
+-rw-r--r--  1 thomasallen  staff   2090362 Apr 15 15:17 ibell.csv
+-rw-r--r--  1 thomasallen  staff   2283379 Apr 15 15:18 isdss.csv
+-rw-r--r--  1 thomasallen  staff   2088867 Apr 15 15:18 rbell.csv
+-rw-r--r--  1 thomasallen  staff   2275141 Apr 15 15:18 rsdss.csv
+-rw-r--r--@ 1 thomasallen  staff      6245 Apr 15 15:18 Data_old.Rmd
+-rw-r--r--  1 thomasallen  staff   2090210 Apr 15 15:18 ubell.csv
+-rw-r--r--  1 thomasallen  staff   2250885 Apr 15 15:18 usdss.csv
+-rw-r--r--  1 thomasallen  staff   2088143 Apr 15 15:18 zbell.csv
+-rw-r--r--  1 thomasallen  staff   2267876 Apr 15 15:19 zsdss.csv
+-rw-r--r--  1 thomasallen  staff   8324323 Apr 15 15:35 Ch1astr.csv
+-rw-r--r--  1 thomasallen  staff   2877200 Apr 15 15:35 Hastr.csv
+-rw-r--r--  1 thomasallen  staff    794438 Apr 15 15:36 Data.nb.html
+-rw-r--r--  1 thomasallen  staff    770905 Apr 15 15:37 Data.html
+-rw-r--r--  1 thomasallen  staff  10843399 Apr 15 16:42 Spectroscopy.csv
+-rw-r--r--  1 thomasallen  staff   2159777 Apr 15 17:53 Vphot.csv
+-rw-r--r--  1 thomasallen  staff    777360 Apr 15 17:53 Data_Conversion_To_CSV.html
+-rw-r--r--@ 1 thomasallen  staff     13541 Apr 15 20:59 Data_Conversion_To_CSV.Rmd
+-rw-r--r--  1 thomasallen  staff      6919 Apr 15 21:01 east_sav.csv
+-rw-r--r--  1 thomasallen  staff      4758 Apr 15 21:01 west_sav.csv
+-rw-r--r--  1 thomasallen  staff       780 Apr 15 21:01 wc1_sav.csv
+-rw-r--r--  1 thomasallen  staff      8861 Apr 15 21:01 wc2_sav.csv
+-rw-r--r--  1 thomasallen  staff       642 Apr 15 21:01 wtd_sav.csv
+-rw-r--r--  1 thomasallen  staff    189041 Apr 15 21:01 wc3_sav.csv
+-rw-r--r--  1 thomasallen  staff     11288 Apr 15 21:01 wysov_sav.csv
+-rw-r--r--  1 thomasallen  staff      5097 Apr 15 21:01 wanc_sav.csv
+-rw-r--r--  1 thomasallen  staff    137388 Apr 15 21:01 wacis_sav.csv
+]0;~/cep_ob3b/cepr/dataHabanero:data thomasallen$ rm *_sav.csv
+]0;~/cep_ob3b/cepr/dataHabanero:data thomasallen$ ls -lrt
+total 162696
+-rw-r--r--  1 thomasallen  staff       151 Apr 14 21:48 README.md
+-rw-r--r--  1 thomasallen  staff   2114971 Apr 15 15:14 Bphot.csv
+-rw-r--r--  1 thomasallen  staff   5047320 Apr 15 15:14 CH1phot.csv
+-rw-r--r--  1 thomasallen  staff   4873733 Apr 15 15:15 CH2phot.csv
+-rw-r--r--  1 thomasallen  staff   2717571 Apr 15 15:15 CH3phot.csv
+-rw-r--r--  1 thomasallen  staff   2704086 Apr 15 15:15 CH4phot.csv
+-rw-r--r--  1 thomasallen  staff   2155051 Apr 15 15:15 Haphot.csv
+-rw-r--r--  1 thomasallen  staff   2541390 Apr 15 15:15 Hphot.csv
+-rw-r--r--  1 thomasallen  staff   2292037 Apr 15 15:16 Iphot.csv
+-rw-r--r--  1 thomasallen  staff   2578616 Apr 15 15:16 Jphot.csv
+-rw-r--r--  1 thomasallen  staff   2495378 Apr 15 15:16 Kphot.csv
+-rw-r--r--  1 thomasallen  staff   2084704 Apr 15 15:16 MIPSphot.csv
+-rw-r--r--  1 thomasallen  staff   2155037 Apr 15 15:17 Rphot.csv
+-rw-r--r--  1 thomasallen  staff   2089672 Apr 15 15:17 gbell.csv
+-rw-r--r--  1 thomasallen  staff   2261564 Apr 15 15:17 gsdss.csv
+-rw-r--r--  1 thomasallen  staff   2090362 Apr 15 15:17 ibell.csv
+-rw-r--r--  1 thomasallen  staff   2283379 Apr 15 15:18 isdss.csv
+-rw-r--r--  1 thomasallen  staff   2088867 Apr 15 15:18 rbell.csv
+-rw-r--r--  1 thomasallen  staff   2275141 Apr 15 15:18 rsdss.csv
+-rw-r--r--@ 1 thomasallen  staff      6245 Apr 15 15:18 Data_old.Rmd
+-rw-r--r--  1 thomasallen  staff   2090210 Apr 15 15:18 ubell.csv
+-rw-r--r--  1 thomasallen  staff   2250885 Apr 15 15:18 usdss.csv
+-rw-r--r--  1 thomasallen  staff   2088143 Apr 15 15:18 zbell.csv
+-rw-r--r--  1 thomasallen  staff   2267876 Apr 15 15:19 zsdss.csv
+-rw-r--r--  1 thomasallen  staff   8324323 Apr 15 15:35 Ch1astr.csv
+-rw-r--r--  1 thomasallen  staff   2877200 Apr 15 15:35 Hastr.csv
+-rw-r--r--  1 thomasallen  staff    794438 Apr 15 15:36 Data.nb.html
+-rw-r--r--  1 thomasallen  staff    770905 Apr 15 15:37 Data.html
+-rw-r--r--  1 thomasallen  staff  10843399 Apr 15 16:42 Spectroscopy.csv
+-rw-r--r--  1 thomasallen  staff   2159777 Apr 15 17:53 Vphot.csv
+-rw-r--r--  1 thomasallen  staff    777360 Apr 15 17:53 Data_Conversion_To_CSV.html
+-rw-r--r--@ 1 thomasallen  staff     13512 Apr 15 21:04 Data_Conversion_To_CSV.Rmd
+-rw-r--r--  1 thomasallen  staff      6919 Apr 15 21:04 east.csv
+-rw-r--r--  1 thomasallen  staff      4758 Apr 15 21:04 west.csv
+-rw-r--r--@ 1 thomasallen  staff    734448 Apr 15 21:04 wnw_only.csv
+-rw-r--r--  1 thomasallen  staff       780 Apr 15 21:04 wc1.csv
+-rw-r--r--  1 thomasallen  staff      8861 Apr 15 21:04 wc2.csv
+-rw-r--r--  1 thomasallen  staff       642 Apr 15 21:04 wtd.csv
+-rw-r--r--  1 thomasallen  staff    189041 Apr 15 21:04 wc3.csv
+-rw-r--r--  1 thomasallen  staff      5097 Apr 15 21:04 wanc.csv
+-rw-r--r--  1 thomasallen  staff    137388 Apr 15 21:04 wacis.csv
+]0;~/cep_ob3b/cepr/dataHabanero:data thomasallen$ 

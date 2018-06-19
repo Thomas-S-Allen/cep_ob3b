@@ -1,0 +1,7 @@
+]0;~/cep_ob3b/cepr[?1034hThomass-MacBook-Pro-2:cepr thomasallen$ DATA_PATH_CEP_PHOT<-paste(DATA_PATH_CEP, "/Photometry",sep="")
+bash: syntax error near unexpected token `('
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ [KThomass-MacBook-Pro-2:cepr thomasallen$ pwd
+/Users/thomasallen/cep_ob3b/cepr
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ git init
+Initialized empty Git repository in /Users/thomasallen/cep_ob3b/cepr/.git/
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ git add .

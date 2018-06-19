@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1529341052952.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "5E8CB8CD",
+    "lastKnownWriteTime" : 1529342069,
+    "last_content_update" : 1529342069808,
+    "path" : "~/cep_ob3b/cepr/munge/01-A.R",
+    "project_path" : "munge/01-A.R",
+    "properties" : {
+        "cursorPosition" : "15,16",
+        "marks" : "<:0,0\n>:182,14",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

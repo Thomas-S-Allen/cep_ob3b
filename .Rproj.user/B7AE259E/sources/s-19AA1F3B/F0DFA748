@@ -1,0 +1,24 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1529380971855.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1173373726",
+    "id" : "F0DFA748",
+    "lastKnownWriteTime" : 1529438090,
+    "last_content_update" : 1529438090762,
+    "path" : "~/cep_ob3b/cepr/reports/python_rnotebook.Rmd",
+    "project_path" : "reports/python_rnotebook.Rmd",
+    "properties" : {
+        "cursorPosition" : "4,19",
+        "last_setup_crc32" : "19AA1F3B7dfe5dd2",
+        "marks" : "<:51,0\n>:51,0",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

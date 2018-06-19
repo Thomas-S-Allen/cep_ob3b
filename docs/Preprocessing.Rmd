@@ -1,0 +1,26 @@
+---
+title: "Preprocessing"
+author: "Thomas Allen"
+date: "4/16/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This directory has the prerocessing and data wrangling scripts.  Here I do a number of things. 
+
+
+### Code Categorical Variables
+
+First I convert the index arrays I was using in IDL and Python into catagorical variables for use in R.  I will also make sure each variable is a factor data type.  The new variables are
+
+* `cluster`: takes values `east`, `west` and `unclassified`.  THese are the subclusters as defined in Allent et al. 2012.
+* `cloud`: takes values `nw` and `unclassified`.  `nw` refers to the north west section of the Cepheus molecular cloud that contains Cep OB3b.  My thesis work was focussed on this region.
+* `yso_vis`: takes values `yso` and `unclassified`.  Potential yso's selected using $V$ vs. $V-I$ color-magnitude criteria.  See Allen et al. 2012 for more. (ADD LINKS TO OTHER SECTION WITH MORE INFO)
+* `disk`: takes values `ps` for protostar, `pd` for protoplanetary disk, `td` for transition disk, and `nd` for no disk.  See Allen et al. 2012 for more. (ADD LINKS TO OTHER SECTION WITH MORE INFO)
+* `xray`: takes values `yes` if the star is associated with an X-ray detection and `no` otherwise.  Note that `no` could mean off the ACIS chip.
+* `acis`: takes values `yes` if coincident with the ACIS field of view and `no` if not.
+
+

@@ -1,0 +1,46 @@
+"0","
+
+cd /Users/thomasallen/cep_ob3b/data/Photometry
+ls
+head CH1phot.dat"
+"1","Bphot.dat
+CH1phot.dat
+CH2phot.dat
+CH3phot.dat
+CH4phot.dat
+Haphot.dat
+Hphot.dat
+Iphot.dat
+Jphot.dat
+Kphot.dat
+MIPSphot.dat
+Rphot.dat
+Vphot.dat
+av.dat
+av_allen14.dat
+av_rl85.dat
+comb.dat
+dered_phot.dat
+gbell.dat
+gsdss.dat
+ibell.dat
+isdss.dat
+merge_dat.sh
+phot_merge.xlsx
+rbell.dat
+rsdss.dat
+ubell.dat
+usdss.dat
+zbell.dat
+zsdss.dat
+ #CH1 [3.6] IRAC Band Photometry - cep_phot_struc.sav
+      -100.00000       10.000000
+      -100.00000       10.000000
+      -100.00000       10.000000
+       16.565521     0.084813811
+       13.190693    0.0090577407
+       15.523094     0.040521715
+       16.732300     0.078479022
+       16.336575     0.054984894
+       16.173370     0.054418273
+"

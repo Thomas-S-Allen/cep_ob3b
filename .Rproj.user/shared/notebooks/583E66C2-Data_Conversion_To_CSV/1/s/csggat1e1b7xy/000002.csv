@@ -1,0 +1,9 @@
+"0","
+/anaconda3/bin/python /Users/thomasallen/python_scripts/Functions/xray_sav2csv.py
+
+cp /Users/thomasallen/cep_ob3b/data/Properties/xray_properties_anchors_red_maxxray.csv /Users/thomasallen/cep_ob3b/cepr/data/maxxray.csv
+cp /Users/thomasallen/cep_ob3b/data/Properties/xray_properties_anchors_red_medxray.csv /Users/thomasallen/cep_ob3b/cepr/data/medxray.csv
+cp /Users/thomasallen/cep_ob3b/data/Properties/xray_properties_anchors_red_minxray.csv /Users/thomasallen/cep_ob3b/cepr/data/minxray.csv
+"
+"1","/Users/thomasallen/cep_ob3b/cep_merged_xray_struc.sav
+"

@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1529350469355.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "4CC9AEF4",
+    "lastKnownWriteTime" : 1529351113,
+    "last_content_update" : 1529351113235,
+    "path" : "~/cep_ob3b/cepr/config/global.dcf",
+    "project_path" : "config/global.dcf",
+    "properties" : {
+        "cursorPosition" : "1,17",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "dcf"
+}

@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1524181965407.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "3E45611F",
+    "lastKnownWriteTime" : -8070450532247928826,
+    "last_content_update" : 1524181965407,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "6E79B786",
+        "caption" : "lbol.teff.sa",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=lbol.teff.sa&cache_key=6E79B786",
+        "displayedObservations" : 255884,
+        "environment" : "",
+        "object" : "lbol.teff.sa",
+        "preview" : 0,
+        "totalObservations" : 255884,
+        "variables" : 3
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
