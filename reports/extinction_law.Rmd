@@ -26,48 +26,4 @@ print(sys.version)
 ```
 
 
-## Using astroquery
-
-We can instantiate a new Vizer query object using the astroquery package.  We will then perform a search for "Cep OB3b"
-
-```{python}
-from astroquery.vizier import Vizier
-
-v = Vizier
-
-v.ROW_LIMIT = -1
-
-catalog_list = v.find_catalogs('Cep OB3b')
-
-catalogs = v.get_catalogs(catalog_list.keys())
-
-```
-
-As can be seen from the above code chunk, first use the `find_catalgos()` function to perform the search, then we get the catalogs using the resulting output.  We can now print the resulting catalogs.
-
-```{python}
-
-print(catalogs)
-```
-
-The first catalog in this small list, 'J/ApJ/750/125/ysos', is from my 2012 paper.  If we want to use it with, say pandas, we could do the following
-
-```{python}
-import pandas as pd
-
-data = catalogs['J/ApJ/750/125/ysos']
-data = data.to_pandas()
-
-#data.column.values
-
-print(data.head())
-
-print(data.columns.values)
-
-```
-
-
-
-
-
 
