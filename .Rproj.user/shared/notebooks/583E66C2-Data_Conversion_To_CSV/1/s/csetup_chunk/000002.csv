@@ -1,6 +1,0 @@
-"0","library(reticulate)"
-"0","#, engine.path=""/anaconda3/bin/python"""
-"0","use_python(""/anaconda3/bin/python"")"
-"0","library(readr)"
-"0","library(dplyr)"
-"0","library(ggplot2)"

@@ -5,3 +5,341 @@ bash: syntax error near unexpected token `('
 ]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ git init
 Initialized empty Git repository in /Users/thomasallen/cep_ob3b/cepr/.git/
 ]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ git add .
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ git commit -m "first commit"
+[master (root-commit) d2bfa6f] first commit
+ 292 files changed, 8106317 insertions(+)
+ create mode 100644 .DS_Store
+ create mode 100644 .Rhistory
+ create mode 100644 .Rproj.user/B7AE259E/console06/2CD9382C
+ create mode 100644 .Rproj.user/B7AE259E/console06/2CD9382C.env
+ create mode 100644 .Rproj.user/B7AE259E/console06/INDEX001
+ create mode 100644 .Rproj.user/B7AE259E/sources/prop/26E0A929
+ create mode 100644 .Rproj.user/B7AE259E/sources/prop/27887DD3
+ create mode 100644 .Rproj.user/B7AE259E/sources/prop/2E39D345
+ create mode 100644 .Rproj.user/B7AE259E/sources/prop/5EAFA606
+ create mode 100644 .Rproj.user/B7AE259E/sources/prop/68BA91A6
+ create mode 100644 .Rproj.user/B7AE259E/sources/prop/6ED063A6
+ create mode 100644 .Rproj.user/B7AE259E/sources/prop/7C3E5060
+ create mode 100644 .Rproj.user/B7AE259E/sources/prop/87F32727
+ create mode 100644 .Rproj.user/B7AE259E/sources/prop/A9F8A410
+ create mode 100644 .Rproj.user/B7AE259E/sources/prop/AFBC3581
+ create mode 100644 .Rproj.user/B7AE259E/sources/prop/BAA345D4
+ create mode 100644 .Rproj.user/B7AE259E/sources/prop/C997E3C3
+ create mode 100644 .Rproj.user/B7AE259E/sources/prop/EE89FDE5
+ create mode 100644 .Rproj.user/B7AE259E/sources/prop/INDEX
+ create mode 100644 .Rproj.user/B7AE259E/sources/s-19AA1F3B/4AFBC642
+ create mode 100644 .Rproj.user/B7AE259E/sources/s-19AA1F3B/4AFBC642-contents
+ create mode 100644 .Rproj.user/B7AE259E/sources/s-19AA1F3B/4CC9AEF4
+ create mode 100644 .Rproj.user/B7AE259E/sources/s-19AA1F3B/4CC9AEF4-contents
+ create mode 100644 .Rproj.user/B7AE259E/sources/s-19AA1F3B/5E8CB8CD
+ create mode 100644 .Rproj.user/B7AE259E/sources/s-19AA1F3B/5E8CB8CD-contents
+ create mode 100644 .Rproj.user/B7AE259E/sources/s-19AA1F3B/5F557EE9
+ create mode 100644 .Rproj.user/B7AE259E/sources/s-19AA1F3B/5F557EE9-contents
+ create mode 100644 .Rproj.user/B7AE259E/sources/s-19AA1F3B/602A8826
+ create mode 100644 .Rproj.user/B7AE259E/sources/s-19AA1F3B/602A8826-contents
+ create mode 100644 .Rproj.user/B7AE259E/sources/s-19AA1F3B/68728803-contents
+ create mode 100644 .Rproj.user/B7AE259E/sources/s-19AA1F3B/94B6F84A
+ create mode 100644 .Rproj.user/B7AE259E/sources/s-19AA1F3B/94B6F84A-contents
+ create mode 100644 .Rproj.user/B7AE259E/sources/s-19AA1F3B/9ECAA5E-contents
+ create mode 100644 .Rproj.user/B7AE259E/sources/s-19AA1F3B/BA89C283-contents
+ create mode 100644 .Rproj.user/B7AE259E/sources/s-19AA1F3B/C52A7FE7-contents
+ create mode 100644 .Rproj.user/B7AE259E/sources/s-19AA1F3B/ED657405
+ create mode 100644 .Rproj.user/B7AE259E/sources/s-19AA1F3B/ED657405-contents
+ create mode 100644 .Rproj.user/B7AE259E/sources/s-19AA1F3B/F0DFA748
+ create mode 100644 .Rproj.user/B7AE259E/sources/s-19AA1F3B/F0DFA748-contents
+ create mode 100644 .Rproj.user/B7AE259E/sources/s-19AA1F3B/lock_file
+ create mode 100644 .Rproj.user/E0FD0AEF/console06/5240CFCD
+ create mode 100644 .Rproj.user/E0FD0AEF/console06/5240CFCD.env
+ create mode 100644 .Rproj.user/E0FD0AEF/console06/INDEX001
+ create mode 100644 .Rproj.user/E0FD0AEF/pcs/files-pane.pper
+ create mode 100644 .Rproj.user/E0FD0AEF/pcs/source-pane.pper
+ create mode 100644 .Rproj.user/E0FD0AEF/pcs/windowlayoutstate.pper
+ create mode 100644 .Rproj.user/E0FD0AEF/pcs/workbench-pane.pper
+ create mode 100644 .Rproj.user/E0FD0AEF/rmd-outputs
+ create mode 100644 .Rproj.user/E0FD0AEF/saved_source_markers
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/per/t/3256348E
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/per/t/3256348E-contents
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/per/t/3E45611F
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/per/t/3E45611F-contents
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/per/t/5284E660
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/per/t/5284E660-contents
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/per/t/6BECF039
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/per/t/6BECF039-contents
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/per/t/B181F47A
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/per/t/B181F47A-contents
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/11888471
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/23C86EAF
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/245CD204
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/614F9AC9
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/628A1B2
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/6E24A89D
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/70ACAC1D
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/747C218D
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/74E62E18
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/76178F27
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/7F6EE60B
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/A071CD0A
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/A9AD1070
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/ADF2D2E6
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/B058B90B
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/C6C09764
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/D60CD591
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/EC129E7C
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/F10889EE
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/F5948520
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/F76B7380
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/FC873E6F
+ create mode 100644 .Rproj.user/E0FD0AEF/sources/prop/INDEX
+ create mode 100644 .Rproj.user/E0FD0AEF/unsaved-notebooks/4332836B/1/chunks.json
+ create mode 100644 .Rproj.user/E0FD0AEF/viewer-cache/6E79B786.Rdata
+ create mode 100644 .Rproj.user/shared/notebooks/125A0BFD-quering_vizier/1/B7AE259E19AA1F3B/chunks.json
+ create mode 100644 .Rproj.user/shared/notebooks/125A0BFD-quering_vizier/1/s/chunks.json
+ create mode 100644 .Rproj.user/shared/notebooks/4672E7DD-Preprocessing/1/s/chunks.json
+ create mode 100644 .Rproj.user/shared/notebooks/583E66C2-Data_Conversion_To_CSV/1/E0FD0AEF14F20F05/chunks.json
+ create mode 100644 .Rproj.user/shared/notebooks/583E66C2-Data_Conversion_To_CSV/1/E0FD0AEF702062EA/chunks.json
+ create mode 100644 .Rproj.user/shared/notebooks/583E66C2-Data_Conversion_To_CSV/1/E0FD0AEF7EE95747/chunks.json
+ create mode 100644 .Rproj.user/shared/notebooks/583E66C2-Data_Conversion_To_CSV/1/s/c4sx3r289yuve/000002.csv
+ create mode 100644 .Rproj.user/shared/notebooks/583E66C2-Data_Conversion_To_CSV/1/s/c6uto5n7iwt2y/000002.csv
+ create mode 100644 .Rproj.user/shared/notebooks/583E66C2-Data_Conversion_To_CSV/1/s/c7ha4rwjmdicj/000002.csv
+ create mode 100644 .Rproj.user/shared/notebooks/583E66C2-Data_Conversion_To_CSV/1/s/c7t1tgrekzvu5/000002.csv
+ create mode 100644 .Rproj.user/shared/notebooks/583E66C2-Data_Conversion_To_CSV/1/s/ce9ql7hlrsg26/000002.csv
+ create mode 100644 .Rproj.user/shared/notebooks/583E66C2-Data_Conversion_To_CSV/1/s/chunks.json
+ create mode 100644 .Rproj.user/shared/notebooks/583E66C2-Data_Conversion_To_CSV/1/s/cnjzbj632uoob/000002.csv
+ create mode 100644 .Rproj.user/shared/notebooks/583E66C2-Data_Conversion_To_CSV/1/s/csetup_chunk/000002.csv
+ create mode 100644 .Rproj.user/shared/notebooks/583E66C2-Data_Conversion_To_CSV/1/s/csggat1e1b7xy/000002.csv
+ create mode 100644 .Rproj.user/shared/notebooks/583E66C2-Data_Conversion_To_CSV/1/s/cxqmunx284xwh/000004.csv
+ create mode 100644 .Rproj.user/shared/notebooks/583E66C2-Data_Conversion_To_CSV/1/s/cxqmunx284xwh/000005.metadata
+ create mode 100644 .Rproj.user/shared/notebooks/583E66C2-Data_Conversion_To_CSV/1/s/cxqmunx284xwh/000005.rdf
+ create mode 100644 .Rproj.user/shared/notebooks/5D55AAD3-Data_old/1/s/c7e6ggkyfk2dw/000002.csv
+ create mode 100644 .Rproj.user/shared/notebooks/5D55AAD3-Data_old/1/s/c9bd17g9gf43v/000002.csv
+ create mode 100644 .Rproj.user/shared/notebooks/5D55AAD3-Data_old/1/s/ccs4627qge264/000002.csv
+ create mode 100644 .Rproj.user/shared/notebooks/5D55AAD3-Data_old/1/s/cd6ryy4cu72m1/000002.csv
+ create mode 100644 .Rproj.user/shared/notebooks/5D55AAD3-Data_old/1/s/chthi6w30xn13/00000c.csv
+ create mode 100644 .Rproj.user/shared/notebooks/5D55AAD3-Data_old/1/s/chthi6w30xn13/00000d.metadata
+ create mode 100644 .Rproj.user/shared/notebooks/5D55AAD3-Data_old/1/s/chthi6w30xn13/00000d.rdf
+ create mode 100644 .Rproj.user/shared/notebooks/5D55AAD3-Data_old/1/s/chunks.json
+ create mode 100644 .Rproj.user/shared/notebooks/5D55AAD3-Data_old/1/s/csetup_chunk/000002.csv
+ create mode 100644 .Rproj.user/shared/notebooks/5D55AAD3-Data_old/1/s/cvx001f0h1s08/000002.csv
+ create mode 100644 .Rproj.user/shared/notebooks/5D55AAD3-Data_old/1/s/cyfwhj0jneujc/000006.csv
+ create mode 100644 .Rproj.user/shared/notebooks/763D0BC4-Preprocessing_2018June16/1/s/chunks.json
+ create mode 100644 .Rproj.user/shared/notebooks/EDA141A5-python_rnotebook/1/B7AE259E19AA1F3B/chunks.json
+ create mode 100644 .Rproj.user/shared/notebooks/EDA141A5-python_rnotebook/1/s/c9ensistdqgh4/000004.csv
+ create mode 100644 .Rproj.user/shared/notebooks/EDA141A5-python_rnotebook/1/s/chunks.json
+ create mode 100644 .Rproj.user/shared/notebooks/EDA141A5-python_rnotebook/1/s/cltxoncs6ynw7/000002.csv
+ create mode 100644 .Rproj.user/shared/notebooks/EDA141A5-python_rnotebook/1/s/csetup_chunk/000002.csv
+ create mode 100644 .Rproj.user/shared/notebooks/EDA141A5-python_rnotebook/1/s/cymjhlfyvo7dl/000002.csv
+ create mode 100644 .Rproj.user/shared/notebooks/patch-chunk-names
+ create mode 100644 .Rproj.user/shared/notebooks/paths
+ create mode 100644 README.md
+ create mode 100644 TODO
+ create mode 100644 cache/Bphot.RData
+ create mode 100644 cache/Bphot.hash
+ create mode 100644 cache/CH1phot.RData
+ create mode 100644 cache/CH1phot.hash
+ create mode 100644 cache/CH2phot.RData
+ create mode 100644 cache/CH2phot.hash
+ create mode 100644 cache/CH3phot.RData
+ create mode 100644 cache/CH3phot.hash
+ create mode 100644 cache/CH4phot.RData
+ create mode 100644 cache/CH4phot.hash
+ create mode 100644 cache/Ch1astr.RData
+ create mode 100644 cache/Ch1astr.hash
+ create mode 100644 cache/Haphot.RData
+ create mode 100644 cache/Haphot.hash
+ create mode 100644 cache/Hastr.RData
+ create mode 100644 cache/Hastr.hash
+ create mode 100644 cache/Hphot.RData
+ create mode 100644 cache/Hphot.hash
+ create mode 100644 cache/Iphot.RData
+ create mode 100644 cache/Iphot.hash
+ create mode 100644 cache/Jphot.RData
+ create mode 100644 cache/Jphot.hash
+ create mode 100644 cache/Kphot.RData
+ create mode 100644 cache/Kphot.hash
+ create mode 100644 cache/MIPSphot.RData
+ create mode 100644 cache/MIPSphot.hash
+ create mode 100644 cache/README.md
+ create mode 100644 cache/Rphot.RData
+ create mode 100644 cache/Rphot.hash
+ create mode 100644 cache/Spectroscopy.RData
+ create mode 100644 cache/Spectroscopy.hash
+ create mode 100644 cache/Vphot.RData
+ create mode 100644 cache/Vphot.hash
+ create mode 100644 cache/cep.df.RData
+ create mode 100644 cache/cep.df.hash
+ create mode 100644 cache/east.RData
+ create mode 100644 cache/east.hash
+ create mode 100644 cache/full.df.RData
+ create mode 100644 cache/full.df.hash
+ create mode 100644 cache/gbell.RData
+ create mode 100644 cache/gbell.hash
+ create mode 100644 cache/gsdss.RData
+ create mode 100644 cache/gsdss.hash
+ create mode 100644 cache/ibell.RData
+ create mode 100644 cache/ibell.hash
+ create mode 100644 cache/isdss.RData
+ create mode 100644 cache/isdss.hash
+ create mode 100644 cache/lbol.teff.sa.RData
+ create mode 100644 cache/lbol.teff.sa.hash
+ create mode 100644 cache/maxxray.RData
+ create mode 100644 cache/maxxray.hash
+ create mode 100644 cache/medxray.RData
+ create mode 100644 cache/medxray.hash
+ create mode 100644 cache/minxray.RData
+ create mode 100644 cache/minxray.hash
+ create mode 100644 cache/prop.df.RData
+ create mode 100644 cache/prop.df.hash
+ create mode 100644 cache/rbell.RData
+ create mode 100644 cache/rbell.hash
+ create mode 100644 cache/rsdss.RData
+ create mode 100644 cache/rsdss.hash
+ create mode 100644 cache/ubell.RData
+ create mode 100644 cache/ubell.hash
+ create mode 100644 cache/usdss.RData
+ create mode 100644 cache/usdss.hash
+ create mode 100644 cache/wacis.RData
+ create mode 100644 cache/wacis.hash
+ create mode 100644 cache/wanc.RData
+ create mode 100644 cache/wanc.hash
+ create mode 100644 cache/wc1.RData
+ create mode 100644 cache/wc1.hash
+ create mode 100644 cache/wc2.RData
+ create mode 100644 cache/wc2.hash
+ create mode 100644 cache/wc3.RData
+ create mode 100644 cache/wc3.hash
+ create mode 100644 cache/west.RData
+ create mode 100644 cache/west.hash
+ create mode 100644 cache/wnw.only.RData
+ create mode 100644 cache/wnw.only.hash
+ create mode 100644 cache/wtd.RData
+ create mode 100644 cache/wtd.hash
+ create mode 100644 cache/wysov.RData
+ create mode 100644 cache/wysov.hash
+ create mode 100644 cache/xray.properties.anchors.red.RData
+ create mode 100644 cache/xray.properties.anchors.red.hash
+ create mode 100644 cache/zbell.RData
+ create mode 100644 cache/zbell.hash
+ create mode 100644 cache/zsdss.RData
+ create mode 100644 cache/zsdss.hash
+ create mode 100644 cepr.Rproj
+ create mode 100644 config/README.md
+ create mode 100644 config/global.dcf
+ create mode 100644 data/Bphot.csv
+ create mode 100644 data/CH1phot.csv
+ create mode 100644 data/CH2phot.csv
+ create mode 100644 data/CH3phot.csv
+ create mode 100644 data/CH4phot.csv
+ create mode 100644 data/Ch1astr.csv
+ create mode 100644 data/Data.html
+ create mode 100644 data/Data.nb.html
+ create mode 100644 data/Data_Conversion_To_CSV.html
+ create mode 100644 data/Data_old.Rmd
+ create mode 100644 data/Haphot.csv
+ create mode 100644 data/Hastr.csv
+ create mode 100644 data/Hphot.csv
+ create mode 100644 data/Iphot.csv
+ create mode 100644 data/Jphot.csv
+ create mode 100644 data/Kphot.csv
+ create mode 100644 data/MIPSphot.csv
+ create mode 100644 data/README.md
+ create mode 100644 data/Rphot.csv
+ create mode 100644 data/Spectroscopy.csv
+ create mode 100644 data/Vphot.csv
+ create mode 100644 data/east.csv
+ create mode 100644 data/gbell.csv
+ create mode 100644 data/gsdss.csv
+ create mode 100644 data/ibell.csv
+ create mode 100644 data/isdss.csv
+ create mode 100644 data/lbol_teff_sa.csv
+ create mode 100644 data/maxxray.csv
+ create mode 100644 data/medxray.csv
+ create mode 100644 data/minxray.csv
+ create mode 100644 data/rbell.csv
+ create mode 100644 data/rsdss.csv
+ create mode 100644 data/ubell.csv
+ create mode 100644 data/usdss.csv
+ create mode 100644 data/wacis.csv
+ create mode 100644 data/wanc.csv
+ create mode 100644 data/wc1.csv
+ create mode 100644 data/wc2.csv
+ create mode 100644 data/wc3.csv
+ create mode 100644 data/west.csv
+ create mode 100644 data/wnw_only.csv
+ create mode 100644 data/wtd.csv
+ create mode 100644 data/wysov.csv
+ create mode 100644 data/xray_properties_anchors_red.csv
+ create mode 100644 data/zbell.csv
+ create mode 100644 data/zsdss.csv
+ create mode 100644 diagnostics/1.R
+ create mode 100644 diagnostics/README.md
+ create mode 100644 docs/Preprocessing.Rmd
+ create mode 100644 docs/Preprocessing_2018June16.Rmd
+ create mode 100644 docs/Preprocessing_2018June16.html
+ create mode 100644 docs/README.md
+ create mode 100644 graphs/README.md
+ create mode 100644 graphs/VvsVmI_obs.pdf
+ create mode 100644 graphs/irac1_obs.pdf
+ create mode 100644 lib/README.md
+ create mode 100644 lib/globals.R
+ create mode 100644 lib/helpers.R
+ create mode 100644 logs/README.md
+ create mode 100644 munge/01-A.R
+ create mode 100644 munge/Preprocessing_2018April16.html
+ create mode 100644 munge/README.md
+ create mode 100644 profiling/1.R
+ create mode 100644 profiling/README.md
+ create mode 100644 reports/Data_Conversion_To_CSV.Rmd
+ create mode 100644 reports/Data_Conversion_To_CSV.html
+ create mode 100644 reports/README.md
+ create mode 100644 reports/python_rnotebook.Rmd
+ create mode 100644 reports/python_rnotebook.html
+ create mode 100644 reports/quering_vizier.Rmd
+ create mode 100644 reports/quering_vizier.nb.html
+ create mode 100644 src/README.md
+ create mode 100644 src/eda.R
+ create mode 100644 src/photometry_observed_plots.R
+ create mode 100644 tests/1.R
+ create mode 100644 tests/README.md
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ git remte[K[Kote add origin https://github.com/Thomas-S-Allen/ce p_ob3b.git
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ git remote -v
+origin	https://github.com/Thomas-S-Allen/cep_ob3b.git (fetch)
+origin	https://github.com/Thomas-S-Allen/cep_ob3b.git (push)
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ git push -u origin master
+To https://github.com/Thomas-S-Allen/cep_ob3b.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/Thomas-S-Allen/cep_ob3b.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ git pull
+warning: no common commits
+remote: Counting objects: 3, done.[K
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0[K
+Unpacking objects:  33% (1/3)   Unpacking objects:  66% (2/3)   Unpacking objects: 100% (3/3)   Unpacking objects: 100% (3/3), done.
+From https://github.com/Thomas-S-Allen/cep_ob3b
+ * [new branch]      master     -> origin/master
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> master
+
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ git pull master
+fatal: 'master' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ git pull master[K[K[K[K[K[Korigin.[K/master
+fatal: 'origin/master' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ 
