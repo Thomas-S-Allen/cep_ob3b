@@ -1,11 +1,14 @@
 ---
-title: "Querying Vizer"
+title: "Extinction Law"
 output:
   html_document:
     df_print: paged
 ---
 
-We will take a look at a number of ways one can query Vizer while working within the RStudio environment.  Some of these approaches will use python, and we will make use of the [reticulate](https://rstudio.github.io/reticulate/) package.  Note, we are defining the python engine in the R setup chunk. 
+
+Let's take a look at the extinction laws that we can use to de-redden the young stars in  Cep Ob3b.  The three main laws are the Reike & Labowsky 1985 law, the Cardelli, Clayton and Mathis, and [Allen et al. 2014](https://ui.adsabs.harvard.edu/#abs/2014ApJ...786..113A).  The Allen et al. 2014 law was derived from misclassified spectral types.
+
+We will make use of the [reticulate](https://rstudio.github.io/reticulate/) package.  Note, we are defining the python engine in the R setup chunk. 
 
 ```{r setup, include=TRUE}
 #devtools::install_github("rstudio/reticulate")

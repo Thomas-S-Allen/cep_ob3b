@@ -124,20 +124,64 @@ $(document).ready(function () {
 </div>
 
 
-<p>In this notebook we are going to use python. If you are working in an R notebook environment, then make check out the <a href="https://rstudio.github.io/reticulate/">reticulate</a> package. We are using it here.</p>
+<p>We will take a look at a number of ways one can query Vizer while working within the RStudio environment. Some of these approaches will use python, and we will make use of the <a href="https://rstudio.github.io/reticulate/">reticulate</a> package. Note, we are defining the python engine in the R setup chunk.</p>
+<pre class="r"><code>#devtools::install_github(&quot;rstudio/reticulate&quot;)
+library(reticulate)
+use_python(&quot;/anaconda3/bin/python&quot;)
+library(readr)
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: 'dplyr'</code></pre>
+<pre><code>## The following objects are masked from 'package:stats':
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(ggplot2)</code></pre>
+<p>Let’s quickly check which version of python we are using. I shoud be usng 3.6.x.</p>
 <pre class="python"><code>import sys as sys
 print(sys.version)</code></pre>
 <pre><code>## 3.6.4 |Anaconda, Inc.| (default, Jan 16 2018, 12:06:34) 
 ## [GCC 4.2.1 Compatible Clang 4.0.1 (tags/RELEASE_401/final)]</code></pre>
+<div id="using-astroquery" class="section level2">
+<h2>Using astroquery</h2>
+<p>We can instantiate a new Vizer query object using the astroquery package. We will then perform a search for “Cep OB3b”</p>
 <pre class="python"><code>from astroquery.vizier import Vizier
-v = Vizier(columns=['RAJ2000', 'DEJ2000', 'Cl', 'Vmag', 'e_Vmag', \
-                    'V-I', 'e_V-I', 'Jmag','e_Jmag', 'Hmag', 'e_Hmag', \
-                    'Ksmag', 'e_Kmag', '__3.6_', 'e_[3.6]', '__4.5_', \
-                    'e_[4.5]', '__5.8_', 'e_[5.6]', '__8.0_', 'e_[8.0]', \
-                    '__24_', 'e_[24]', 'AKs', 'Note','M07', '_2M', \
-                    'Simbad'], catalog=&quot;J/ApJ/750/125/ysos&quot;)</code></pre>
-<pre class="python"><code>print(v)</code></pre>
-<pre><code>## &lt;astroquery.vizier.core.VizierClass object at 0x11d629780&gt;</code></pre>
+v = Vizier
+v.ROW_LIMIT = -1
+catalog_list = v.find_catalogs('Cep OB3b')
+catalogs = v.get_catalogs(catalog_list.keys())</code></pre>
+<p>As can be seen from the above code chunk, first use the <code>find_catalgos()</code> function to perform the search, then we get the catalogs using the resulting output. We can now print the resulting catalogs.</p>
+<pre class="python"><code>print(catalogs)</code></pre>
+<pre><code>## TableList with 4 tables:
+##  '0:J/ApJ/750/125/ysos' with 18 column(s) and 2575 row(s) 
+##  '1:J/ApJ/786/113/table1' with 16 column(s) and 76 row(s) 
+##  '2:J/MNRAS/341/805/catalog' with 13 column(s) and 13657 row(s) 
+##  '3:J/MNRAS/341/805/flags' with 5 column(s) and 18 row(s)</code></pre>
+<p>The first catalog in this small list, ‘J/ApJ/750/125/ysos’, is from my 2012 paper. If we want to use it with, say pandas, we could do the following</p>
+<pre class="python"><code>import pandas as pd
+data = catalogs['J/ApJ/750/125/ysos']
+data = data.to_pandas()
+#data.column.values
+print(data.head())</code></pre>
+<pre><code>##           RAJ2000         DEJ2000    Cl       Vmag   V-I   Jmag   Hmag  Ksmag  \
+## 0  b'22 50 14.22'  b'+62 25 50.2'  b'I'        NaN   NaN    NaN    NaN  15.17   
+## 1  b'22 51 22.84'  b'+62 48 40.8'  b'I'        NaN   NaN    NaN    NaN    NaN   
+## 2  b'22 52 22.88'  b'+62 28 46.6'  b'I'        NaN   NaN    NaN    NaN    NaN   
+## 3  b'22 52 49.10'  b'+62 29 20.5'  b'I'  20.889999  1.96    NaN  15.64  14.36   
+## 4  b'22 53 02.63'  b'+62 33 39.4'  b'I'  24.350000  6.68  15.29  14.20  13.79   
+## 
+##    __3.6_  __4.5_  __5.8_  __8.0_  __24_   AKs Note  M07    _2M     Simbad  
+## 0   14.07   13.37   12.66   11.59   8.82   NaN  b''  0.0  b'2M'  b'Simbad'  
+## 1   15.09   13.88   12.72   11.40   7.71   NaN  b''  0.0  b'2M'  b'Simbad'  
+## 2   14.40   13.33   12.48   11.30   6.30   NaN  b''  0.0  b'2M'  b'Simbad'  
+## 3   12.17   11.29   10.31    9.22   6.38   NaN  b''  1.0  b'2M'  b'Simbad'  
+## 4   13.77   13.03   12.20   10.82   8.39  0.06  b''  1.0  b'2M'  b'Simbad'</code></pre>
+<pre class="python"><code>print(data.columns.values)</code></pre>
+<pre><code>## ['RAJ2000' 'DEJ2000' 'Cl' 'Vmag' 'V-I' 'Jmag' 'Hmag' 'Ksmag' '__3.6_'
+##  '__4.5_' '__5.8_' '__8.0_' '__24_' 'AKs' 'Note' 'M07' '_2M' 'Simbad']</code></pre>
+</div>
 
 
 

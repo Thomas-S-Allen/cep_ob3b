@@ -173,15 +173,26 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-text-begin -->
-<p>In this notebook we are going to use python. If you are working in an R notebook environment, then make check out the <a href="https://rstudio.github.io/reticulate/">reticulate</a> package. We are using it here.</p>
+<p>We will take a look at a number of ways one can query Vizer while working within the RStudio environment. Some of these approaches will use python, and we will make use of the <a href="https://rstudio.github.io/reticulate/">reticulate</a> package. Note, we are defining the python engine in the R setup chunk.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5pbXBvcnQgc3lzIGFzIHN5c1xucHJpbnQoc3lzLnZlcnNpb24pXG5cbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2RldnRvb2xzOjppbnN0YWxsX2dpdGh1YihcInJzdHVkaW8vcmV0aWN1bGF0ZVwiKVxubGlicmFyeShyZXRpY3VsYXRlKVxuIywgZW5naW5lLnBhdGg9XCIvYW5hY29uZGEzL2Jpbi9weXRob25cIlxudXNlX3B5dGhvbihcIi9hbmFjb25kYTMvYmluL3B5dGhvblwiKVxubGlicmFyeShyZWFkcilcbmxpYnJhcnkoZHBseXIpXG5saWJyYXJ5KGdncGxvdDIpXG5gYGAifQ== -->
+<pre class="r"><code>#devtools::install_github(&quot;rstudio/reticulate&quot;)
+library(reticulate)
+#, engine.path=&quot;/anaconda3/bin/python&quot;
+use_python(&quot;/anaconda3/bin/python&quot;)
+library(readr)
+library(dplyr)
+library(ggplot2)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Let’s quickly check which version of python we are using. I shoud be usng 3.6.x.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5pbXBvcnQgc3lzIGFzIHN5c1xucHJpbnQoc3lzLnZlcnNpb24pXG5gYGAifQ== -->
 <pre class="python"><code>import sys as sys
-print(sys.version)
-</code></pre>
+print(sys.version)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiMi43LjEwIChkZWZhdWx0LCBKdWwgMTUgMjAxNywgMTc6MTY6NTcpIFxuW0dDQyA0LjIuMSBDb21wYXRpYmxlIEFwcGxlIExMVk0gOS4wLjAgKGNsYW5nLTkwMC4wLjMxKV1cbiJ9 -->
 <pre><code>2.7.10 (default, Jul 15 2017, 17:16:57) 
@@ -189,39 +200,54 @@ print(sys.version)
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<div id="using-astroquery" class="section level2">
+<h2>Using astroquery</h2>
+<p>We can instantiate a new Vizer query object using the astroquery package. We will then perform a search for “Cep OB3b”</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5mcm9tIGFzdHJvcXVlcnkudml6aWVyIGltcG9ydCBWaXppZXJcblxudiA9IFZpemllcihjb2x1bW5zPVsnUkFKMjAwMCcsICdERUoyMDAwJywgJ0NsJywgJ1ZtYWcnLCAnZV9WbWFnJywgXFxcbiAgICAgICAgICAgICAgICAgICAgJ1YtSScsICdlX1YtSScsICdKbWFnJywnZV9KbWFnJywgJ0htYWcnLCAnZV9IbWFnJywgXFxcbiAgICAgICAgICAgICAgICAgICAgJ0tzbWFnJywgJ2VfS21hZycsICdfXzMuNl8nLCAnZV9bMy42XScsICdfXzQuNV8nLCBcXFxuICAgICAgICAgICAgICAgICAgICAnZV9bNC41XScsICdfXzUuOF8nLCAnZV9bNS42XScsICdfXzguMF8nLCAnZV9bOC4wXScsIFxcXG4gICAgICAgICAgICAgICAgICAgICdfXzI0XycsICdlX1syNF0nLCAnQUtzJywgJ05vdGUnLCdNMDcnLCAnXzJNJywgXFxcbiAgICAgICAgICAgICAgICAgICAgJ1NpbWJhZCddLCBjYXRhbG9nPVwiSi9BcEovNzUwLzEyNS95c29zXCIpXG5cblxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5mcm9tIGFzdHJvcXVlcnkudml6aWVyIGltcG9ydCBWaXppZXJcblxudiA9IFZpemllclxuXG52LlJPV19MSU1JVCA9IC0xXG5cbmNhdGFsb2dfbGlzdCA9IHYuZmluZF9jYXRhbG9ncygnQ2VwIE9CM2InKVxuYGBgIn0= -->
 <pre class="python"><code>from astroquery.vizier import Vizier
 
-v = Vizier(columns=['RAJ2000', 'DEJ2000', 'Cl', 'Vmag', 'e_Vmag', \
-                    'V-I', 'e_V-I', 'Jmag','e_Jmag', 'Hmag', 'e_Hmag', \
-                    'Ksmag', 'e_Kmag', '__3.6_', 'e_[3.6]', '__4.5_', \
-                    'e_[4.5]', '__5.8_', 'e_[5.6]', '__8.0_', 'e_[8.0]', \
-                    '__24_', 'e_[24]', 'AKs', 'Note','M07', '_2M', \
-                    'Simbad'], catalog=&quot;J/ApJ/750/125/ysos&quot;)
-</code></pre>
+v = Vizier
+
+v.ROW_LIMIT = -1
+
+catalog_list = v.find_catalogs('Cep OB3b')</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>As can be seen from the above code chunk, first use the <code>find_catalgos()</code> function to perform the search, then we get the catalogs using the resulting output. We can now print the resulting catalogs.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5cbnByaW50KHYpXG5cbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5cbnByaW50KGNhdGFsb2dzKVxuXG5cblxuYGBgIn0= -->
 <pre class="python"><code>
-print(v)
+print(catalogs)
 </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiVHJhY2ViYWNrIChtb3N0IHJlY2VudCBjYWxsIGxhc3QpOlxuICBGaWxlIFwiL3Zhci9mb2xkZXJzLzU5L2s4NWJ5X3RuMjM5M19yMnpqaHhncGY0dzAwMDBnbi9UL1J0bXBLTE5lVU8vY2h1bmstY29kZS00YjdhNWI3NWRhZGQudHh0XCIsIGxpbmUgMiwgaW4gPG1vZHVsZT5cbiAgICBwcmludCh2KVxuTmFtZUVycm9yOiBuYW1lICd2JyBpcyBub3QgZGVmaW5lZFxuIn0= -->
-<pre><code>Traceback (most recent call last):
-  File &quot;/var/folders/59/k85by_tn2393_r2zjhxgpf4w0000gn/T/RtmpKLNeUO/chunk-code-4b7a5b75dadd.txt&quot;, line 2, in &lt;module&gt;
-    print(v)
-NameError: name 'v' is not defined</code></pre>
-<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The first catalog in this small list, ‘J/ApJ/750/125/ysos’, is from my 2012 paper. If we want to use it with, say pandas, we could do the following</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5pbXBvcnQgcGFuZGFzIGFzIHBkXG5cbmRhdGEgPSBjYXRhbG9nc1snSi9BcEovNzUwLzEyNS95c29zJ11cbmRhdGEgPSBkYXRhLnRvX3BhbmRhcygpXG5cbiNkYXRhLmNvbHVtbi52YWx1ZXNcblxucHJpbnQoZGF0YS5oZWFkKCkpXG5cbnByaW50KGRhdGEuY29sdW1ucy52YWx1ZXMpXG5cbmBgYCJ9 -->
+<pre class="python"><code>import pandas as pd
+
+data = catalogs['J/ApJ/750/125/ysos']
+data = data.to_pandas()
+
+#data.column.values
+
+print(data.head())
+
+print(data.columns.values)
+</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUXVlcnlpbmcgVml6ZXIiCm91dHB1dDoKICBodG1sX2RvY3VtZW50OgogICAgZGZfcHJpbnQ6IHBhZ2VkCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9CiNkZXZ0b29sczo6aW5zdGFsbF9naXRodWIoInJzdHVkaW8vcmV0aWN1bGF0ZSIpCmxpYnJhcnkocmV0aWN1bGF0ZSkKIywgZW5naW5lLnBhdGg9Ii9hbmFjb25kYTMvYmluL3B5dGhvbiIKdXNlX3B5dGhvbigiL2FuYWNvbmRhMy9iaW4vcHl0aG9uIikKbGlicmFyeShyZWFkcikKbGlicmFyeShkcGx5cikKbGlicmFyeShnZ3Bsb3QyKQpgYGAKCkluIHRoaXMgbm90ZWJvb2sgd2UgYXJlIGdvaW5nIHRvIHVzZSBweXRob24uICBJZiB5b3UgYXJlIHdvcmtpbmcgaW4gYW4gUiBub3RlYm9vayBlbnZpcm9ubWVudCwgdGhlbiBtYWtlIGNoZWNrIG91dCB0aGUgW3JldGljdWxhdGVdKGh0dHBzOi8vcnN0dWRpby5naXRodWIuaW8vcmV0aWN1bGF0ZS8pIHBhY2thZ2UuICBXZSBhcmUgdXNpbmcgaXQgaGVyZS4KCmBgYHtweXRob259CmltcG9ydCBzeXMgYXMgc3lzCnByaW50KHN5cy52ZXJzaW9uKQoKYGBgCgoKYGBge3B5dGhvbiwgZW5naW5lPSIvYW5hY29uZGEzL2Jpbi9weXRob24ifQpmcm9tIGFzdHJvcXVlcnkudml6aWVyIGltcG9ydCBWaXppZXIKCnYgPSBWaXppZXIoY29sdW1ucz1bJ1JBSjIwMDAnLCAnREVKMjAwMCcsICdDbCcsICdWbWFnJywgJ2VfVm1hZycsIFwKICAgICAgICAgICAgICAgICAgICAnVi1JJywgJ2VfVi1JJywgJ0ptYWcnLCdlX0ptYWcnLCAnSG1hZycsICdlX0htYWcnLCBcCiAgICAgICAgICAgICAgICAgICAgJ0tzbWFnJywgJ2VfS21hZycsICdfXzMuNl8nLCAnZV9bMy42XScsICdfXzQuNV8nLCBcCiAgICAgICAgICAgICAgICAgICAgJ2VfWzQuNV0nLCAnX181LjhfJywgJ2VfWzUuNl0nLCAnX184LjBfJywgJ2VfWzguMF0nLCBcCiAgICAgICAgICAgICAgICAgICAgJ19fMjRfJywgJ2VfWzI0XScsICdBS3MnLCAnTm90ZScsJ00wNycsICdfMk0nLCBcCiAgICAgICAgICAgICAgICAgICAgJ1NpbWJhZCddLCBjYXRhbG9nPSJKL0FwSi83NTAvMTI1L3lzb3MiKQoKCmBgYAoKCgoKYGBge3B5dGhvbiwgZW5naW5lPSIvYW5hY29uZGEzL2Jpbi9weXRob24ifQoKcHJpbnQodikKCmBgYAoKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUXVlcnlpbmcgVml6ZXIiCm91dHB1dDoKICBodG1sX2RvY3VtZW50OgogICAgZGZfcHJpbnQ6IHBhZ2VkCi0tLQoKV2Ugd2lsbCB0YWtlIGEgbG9vayBhdCBhIG51bWJlciBvZiB3YXlzIG9uZSBjYW4gcXVlcnkgVml6ZXIgd2hpbGUgd29ya2luZyB3aXRoaW4gdGhlIFJTdHVkaW8gZW52aXJvbm1lbnQuICBTb21lIG9mIHRoZXNlIGFwcHJvYWNoZXMgd2lsbCB1c2UgcHl0aG9uLCBhbmQgd2Ugd2lsbCBtYWtlIHVzZSBvZiB0aGUgW3JldGljdWxhdGVdKGh0dHBzOi8vcnN0dWRpby5naXRodWIuaW8vcmV0aWN1bGF0ZS8pIHBhY2thZ2UuICBOb3RlLCB3ZSBhcmUgZGVmaW5pbmcgdGhlIHB5dGhvbiBlbmdpbmUgaW4gdGhlIFIgc2V0dXAgY2h1bmsuIAoKYGBge3Igc2V0dXAsIGluY2x1ZGU9VFJVRX0KI2RldnRvb2xzOjppbnN0YWxsX2dpdGh1YigicnN0dWRpby9yZXRpY3VsYXRlIikKbGlicmFyeShyZXRpY3VsYXRlKQp1c2VfcHl0aG9uKCIvYW5hY29uZGEzL2Jpbi9weXRob24iKQpsaWJyYXJ5KHJlYWRyKQpsaWJyYXJ5KGRwbHlyKQpsaWJyYXJ5KGdncGxvdDIpCmBgYAoKTGV0J3MgcXVpY2tseSBjaGVjayB3aGljaCB2ZXJzaW9uIG9mIHB5dGhvbiB3ZSBhcmUgdXNpbmcuICBJIHNob3VkIGJlIHVzbmcgMy42LnguCmBgYHtweXRob259CmltcG9ydCBzeXMgYXMgc3lzCnByaW50KHN5cy52ZXJzaW9uKQpgYGAKCgojIyBVc2luZyBhc3Ryb3F1ZXJ5CgpXZSBjYW4gaW5zdGFudGlhdGUgYSBuZXcgVml6ZXIgcXVlcnkgb2JqZWN0IHVzaW5nIHRoZSBhc3Ryb3F1ZXJ5IHBhY2thZ2UuICBXZSB3aWxsIHRoZW4gcGVyZm9ybSBhIHNlYXJjaCBmb3IgIkNlcCBPQjNiIgoKYGBge3B5dGhvbn0KZnJvbSBhc3Ryb3F1ZXJ5LnZpemllciBpbXBvcnQgVml6aWVyCgp2ID0gVml6aWVyCgp2LlJPV19MSU1JVCA9IC0xCgpjYXRhbG9nX2xpc3QgPSB2LmZpbmRfY2F0YWxvZ3MoJ0NlcCBPQjNiJykKCmNhdGFsb2dzID0gdi5nZXRfY2F0YWxvZ3MoY2F0YWxvZ19saXN0LmtleXMoKSkKCmBgYAoKQXMgY2FuIGJlIHNlZW4gZnJvbSB0aGUgYWJvdmUgY29kZSBjaHVuaywgZmlyc3QgdXNlIHRoZSBgZmluZF9jYXRhbGdvcygpYCBmdW5jdGlvbiB0byBwZXJmb3JtIHRoZSBzZWFyY2gsIHRoZW4gd2UgZ2V0IHRoZSBjYXRhbG9ncyB1c2luZyB0aGUgcmVzdWx0aW5nIG91dHB1dC4gIFdlIGNhbiBub3cgcHJpbnQgdGhlIHJlc3VsdGluZyBjYXRhbG9ncy4KCmBgYHtweXRob259CgpwcmludChjYXRhbG9ncykKCgoKYGBgCgpUaGUgZmlyc3QgY2F0YWxvZyBpbiB0aGlzIHNtYWxsIGxpc3QsICdKL0FwSi83NTAvMTI1L3lzb3MnLCBpcyBmcm9tIG15IDIwMTIgcGFwZXIuICBJZiB3ZSB3YW50IHRvIHVzZSBpdCB3aXRoLCBzYXkgcGFuZGFzLCB3ZSBjb3VsZCBkbyB0aGUgZm9sbG93aW5nCgpgYGB7cHl0aG9ufQppbXBvcnQgcGFuZGFzIGFzIHBkCgpkYXRhID0gY2F0YWxvZ3NbJ0ovQXBKLzc1MC8xMjUveXNvcyddCmRhdGEgPSBkYXRhLnRvX3BhbmRhcygpCgojZGF0YS5jb2x1bW4udmFsdWVzCgpwcmludChkYXRhLmhlYWQoKSkKCnByaW50KGRhdGEuY29sdW1ucy52YWx1ZXMpCgpgYGAKCgoKCgoK</div>
 
 
 
