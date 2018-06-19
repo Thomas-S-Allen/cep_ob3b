@@ -7,6 +7,7 @@ output:
 
 
 ```{r setup, include=TRUE}
+devtools::install_github("rstudio/reticulate")
 library(reticulate)
 #, engine.path="/anaconda3/bin/python"
 use_python("/anaconda3/bin/python")

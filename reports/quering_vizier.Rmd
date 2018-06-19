@@ -1,9 +1,12 @@
 ---
 title: "Querying Vizer"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
-```{r setup, include=TRUE}
+```{r setup, include=FALSE}
+#devtools::install_github("rstudio/reticulate")
 library(reticulate)
 #, engine.path="/anaconda3/bin/python"
 use_python("/anaconda3/bin/python")
@@ -13,5 +16,34 @@ library(ggplot2)
 ```
 
 In this notebook we are going to use python.  If you are working in an R notebook environment, then make check out the [reticulate](https://rstudio.github.io/reticulate/) package.  We are using it here.
+
+```{python}
+import sys as sys
+print(sys.version)
+
+```
+
+
+```{python, engine="/anaconda3/bin/python"}
+from astroquery.vizier import Vizier
+
+v = Vizier(columns=['RAJ2000', 'DEJ2000', 'Cl', 'Vmag', 'e_Vmag', \
+                    'V-I', 'e_V-I', 'Jmag','e_Jmag', 'Hmag', 'e_Hmag', \
+                    'Ksmag', 'e_Kmag', '__3.6_', 'e_[3.6]', '__4.5_', \
+                    'e_[4.5]', '__5.8_', 'e_[5.6]', '__8.0_', 'e_[8.0]', \
+                    '__24_', 'e_[24]', 'AKs', 'Note','M07', '_2M', \
+                    'Simbad'], catalog="J/ApJ/750/125/ysos")
+
+
+```
+
+
+
+
+```{python, engine="/anaconda3/bin/python"}
+
+print(v)
+
+```
 
 

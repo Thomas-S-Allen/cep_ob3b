@@ -400,4 +400,19 @@ From https://github.com/Thomas-S-Allen/cep_ob3b
 Auto-merging README.md
 CONFLICT (add/add): Merge conflict in README.md
 Automatic merge failed; fix conflicts and then commit the result.
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ library(readr)
+bash: syntax error near unexpected token `readr'
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ library(readr)
+bash: syntax error near unexpected token `readr'
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ from astroquery.vizier import Vizier
+from: can't read /var/mail/astroquery.vizier
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ 
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$                     'Simbad'], catalog="J/ApJ/750/125/ysos ")
+bash: syntax error near unexpected token `)'
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ 
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ 
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ print(sys.version)
+bash: syntax error near unexpected token `sys.version'
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ print(sys.version)
+bash: syntax error near unexpected token `sys.version'
 ]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ 
