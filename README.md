@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # cepr
 
 Welcome to ProjectTemplate!
@@ -37,3 +38,7 @@ You'll have access to all of your data, already fully preprocessed, and
 all of the libraries you want to use.
 
 For more details about ProjectTemplate, see http://projecttemplate.net
+=======
+# cep_ob3b
+Young Stellar Cluster Cep OB3b
+>>>>>>> f61f95baca97837ea4798500ce69a2fbed5214d3

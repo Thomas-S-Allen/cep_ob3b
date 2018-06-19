@@ -342,4 +342,62 @@ fatal: Could not read from remote repository.
 
 Please make sure you have the correct access rights
 and the repository exists.
+pwd[1Plscd static/img/ls[Kcd ../[4Plscd ../[3Ppwdcp template.Rmd 2018-06-12-reproducible-research.Rmd[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[14Prm 2018-06-12-reproducible-research.mdls[Kgit push -u origin master[1P[1P[1P[1P[1P[1P[1@u[1@l[1@l
+bash: lsgit: command not found
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ lsgit pull origin master[1P[1P
+From https://github.com/Thomas-S-Allen/cep_ob3b
+ * branch            master     -> FETCH_HEAD
+fatal: refusing to merge unrelated histories
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ git pull origin master[2@ls[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[C[C[C[C[C[C[C[C[1P[1P[1@s[1@h[C[1@ [1@-[1@u
+To https://github.com/Thomas-S-Allen/cep_ob3b.git
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://github.com/Thomas-S-Allen/cep_ob3b.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ git pull
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> master
+
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ git pull origin master
+From https://github.com/Thomas-S-Allen/cep_ob3b
+ * branch            master     -> FETCH_HEAD
+fatal: refusing to merge unrelated histories
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ git pull https://github.com/Thomas-S-Allen/cep_ob3b.git
+From https://github.com/Thomas-S-Allen/cep_ob3b
+ * branch            HEAD       -> FETCH_HEAD
+fatal: refusing to merge unrelated histories
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ git remote add r[Korigin https://github.com/Thomas-S-Allen/ce p_ob3b.git
+fatal: remote origin already exists.
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ git version -v
+error: unknown switch `v'
+usage: git version [<options>]
+
+    --build-options       also print build options
+
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ git remote -v
+origin	https://github.com/Thomas-S-Allen/cep_ob3b.git (fetch)
+origin	https://github.com/Thomas-S-Allen/cep_ob3b.git (push)
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ push p[K[K[K[K[Kull [K[K[K[K[Kgit pull origin
+You asked to pull from the remote 'origin', but did not specify
+a branch. Because this is not the default configured remote
+for your current branch, you must specify a branch on the command line.
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ git pull origin master
+From https://github.com/Thomas-S-Allen/cep_ob3b
+ * branch            master     -> FETCH_HEAD
+fatal: refusing to merge unrelated histories
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ git pull origin master[K master --allow-unrelated-histories
+From https://github.com/Thomas-S-Allen/cep_ob3b
+ * branch            master     -> FETCH_HEAD
+Auto-merging README.md
+CONFLICT (add/add): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.
 ]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ 
