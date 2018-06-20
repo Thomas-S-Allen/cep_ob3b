@@ -415,4 +415,13 @@ bash: syntax error near unexpected token `)'
 bash: syntax error near unexpected token `sys.version'
 ]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ print(sys.version)
 bash: syntax error near unexpected token `sys.version'
-]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ 
+[KThomass-MacBook-Pro-2:cepr thomasallen$ ls -a
+.		.gitignore	data		munge
+..		README.md	diagnostics	profiling
+.DS_Store	TODO		docs		reports
+.Rhistory	cache		graphs		src
+.Rproj.user	cepr.Rproj	lib		tests
+.git		config		logs
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ vim .gitignore
+[?2004h]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ vim .gitignore
+[?2004h
