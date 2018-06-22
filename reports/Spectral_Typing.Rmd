@@ -166,13 +166,41 @@ Ok, so close to 30 K5/K6 stars still remain.  There is almost 30 K7s.
 
 ```{r}
 
+plot_fit <- function(df,c1,c2,c3)  {
+    
+    
+    plot <- df %>% 
+        filter(giant=="giant") %>% 
+        filter(is.na(!!c2)==FALSE & is.na(!!c3)==FALSE & is.na(!!c1)==FALSE) %>% 
+        filter(spt==65 | spt==66) %>% # | spt==67) 
+    
 
+        #mutate(c1=as.numeric(c1)) %>%
+        #mutate(x=c2-c3,y=c1-c2)
+    #filter(jmk < 1.75)
+
+   
+#    df %>% 
+        ggplot(aes(x=!!c2-!!c3, y=!!c1-!!c2)) +
+        geom_point()
+
+ #   lm(y ~ x, data = df)
+    return(plot)
+  #  summary(fit)
+}
+# g - J
+
+#spt.df %>% plot_fit("gmag","jamg","kmag")
+```
+
+```{r}
+    
 # g - J
 
 spt.df2 <- spt.df %>% 
     filter(giant=="giant") %>% 
     filter(is.na(jmag)==FALSE & is.na(kmag)==FALSE & is.na(gmag)==FALSE) %>% 
-    filter(spt==65 | spt==66 | spt==67) 
+    filter(spt==65 | spt==66)# | spt==67) 
     
 
 spt.df3 <- spt.df2 %>% 
@@ -182,7 +210,7 @@ spt.df3 <- spt.df2 %>%
 
  spt.df3 %>% 
     ggplot(aes(x=jmk, y=gmj)) +
-    geom_point()
+    geom_point() + geom_smooth(method = "lm", se=FALSE)
 
 fit <- lm(gmj ~ jmk, data = spt.df3)
 
@@ -193,7 +221,7 @@ summary(fit)
 spt.df2 <- spt.df %>% 
     filter(giant=="giant") %>% 
     filter(is.na(jmag)==FALSE & is.na(kmag)==FALSE & is.na(vmag)==FALSE) %>% 
-    filter(spt==65 | spt==66 | spt==67) 
+    filter(spt==65 | spt==66)# | spt==67) 
     
 
 spt.df3 <- spt.df2 %>% 
@@ -203,7 +231,7 @@ spt.df3 <- spt.df2 %>%
 
  spt.df3 %>% 
     ggplot(aes(x=jmk, y=vmj)) +
-    geom_point()
+    geom_point() + geom_smooth(method = "lm", se=FALSE)
 
 fit <- lm(vmj ~ jmk, data = spt.df3)
 
@@ -214,7 +242,7 @@ summary(fit)
 spt.df2 <- spt.df %>% 
     filter(giant=="giant") %>% 
     filter(is.na(jmag)==FALSE & is.na(kmag)==FALSE & is.na(vmag)==FALSE) %>% 
-    filter(spt==65 | spt==66 | spt==67) 
+    filter(spt==65 | spt==66)# | spt==67) 
     
 
 spt.df3 <- spt.df2 %>% 
@@ -224,7 +252,7 @@ spt.df3 <- spt.df2 %>%
 
  spt.df3 %>% 
     ggplot(aes(x=jmk, y=vmj)) +
-    geom_point()
+    geom_point() + geom_smooth(method = "lm", se=FALSE)
 
 fit <- lm(vmj ~ jmk, data = spt.df3)
 
@@ -235,7 +263,7 @@ summary(fit)
 spt.df2 <- spt.df %>% 
     filter(giant=="giant") %>% 
     filter(is.na(jmag)==FALSE & is.na(kmag)==FALSE & is.na(rmag)==FALSE) %>% 
-    filter(spt==65 | spt==66 | spt==67) 
+    filter(spt==65 | spt==66)# | spt==67) 
     
 
 spt.df3 <- spt.df2 %>% 
@@ -245,7 +273,7 @@ spt.df3 <- spt.df2 %>%
 
  spt.df3 %>% 
     ggplot(aes(x=jmk, y=rmj)) +
-    geom_point()
+    geom_point() + geom_smooth(method = "lm", se=FALSE)
 
 fit <- lm(rmj ~ jmk, data = spt.df3)
 
