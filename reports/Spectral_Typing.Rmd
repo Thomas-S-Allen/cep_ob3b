@@ -1,0 +1,276 @@
+---
+title: "Spectral Typing"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+#bibliography: cep_ob3b_spectroscopy.bib
+---
+
+
+Here we will take a look at the spectral typing of stars toward Cep OB3b.   
+
+
+```{r setup, include=TRUE}
+#devtools::install_github("rstudio/reticulate")
+library(reticulate)
+use_python("/anaconda3/bin/python")
+library(readr)
+library(dplyr)
+library(ggplot2)
+source("/Users/thomasallen/cep_ob3b/cepr/lib/helpers.R")
+
+#library('ProjectTemplate')
+#project_directory<-"/Users/thomasallen/cep_ob3b/cepr"
+#setwd(project_directory)
+#load.project()
+```
+
+
+```{python}
+
+import sys as sys
+sys.path.append("/Users/thomasallen/Code/python_scripts/Functions")
+
+```
+
+
+
+```{python}
+import sys as sys
+sys.path.append("/Users/thomasallen/Code/python_scripts/Functions")
+
+from hecto_funcs import hectospec_fits_open_index
+from astropy.io import ascii
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+dir_in='/Users/thomasallen/cep_ob3b/data/Spectroscopy/'
+standards_fn=dir_in+'spec_standards.dat'
+#print(standards_fn)
+stand=ascii.read(standards_fn)
+spt=stand['col1']
+fn=stand['col2']
+num=stand['col3']
+
+off = np.arange(len(fn))
+
+#print(fn)
+#print('Off')
+#print(off)
+
+
+psize=16
+fsize=22
+fsize2=24
+
+
+fig = plt.figure(figsize=(10,15))
+plt.gcf().subplots_adjust(bottom=0.15,left=0.15)
+
+
+plt.subplot(1,1,1)
+
+
+for ii in range(len(fn)):
+
+    wav,flux = hectospec_fits_open_index(fn[ii])
+
+    #print('')
+    #print(ii)
+    #print(len(wav))
+    #print(len(flux))
+
+    #plt.plot(wav,flux+off[ii])
+
+
+#plt.ylim=[0,100]
+#plt.xlabel(r"Wavelength ($\mu \mathrm{m}$)",fontsize=fsize2)
+#
+#plt.show()
+
+```
+
+
+We read in the data set.  Here we will start with the `full.df.csv` dataset.  For details about this data set see the [data documentation]().  We are interested in the spectral typing of the stars with *Hectospec* spectra.  
+
+```{r}
+data_path <- "/Users/thomasallen/cep_ob3b/cepr/data/"
+data_path2 <- "/Users/thomasallen/cep_ob3b/data/"
+
+#full.df.csv
+
+full.df <- read_csv(paste(data_path2,"full.df.csv",sep=""))
+
+#head(full.df)
+gsdss.df <- read_csv(paste(data_path,"gsdss.csv",sep=""))
+rsdss.df <- read_csv(paste(data_path,"rsdss.csv",sep=""))
+
+full.df <- full.df %>% 
+    mutate(gmag=gsdss.df$mag,gerr=gsdss.df$err) %>% 
+    mutate(rmag=rsdss.df$mag,rerr=rsdss.df$err)
+
+full.df <- full.df %>% 
+    mutate(bmag=as.numeric(bmag)) %>% 
+    mutate(berr=as.numeric(berr)) %>%
+    mutate(vmag=as.numeric(vmag)) %>% 
+    mutate(verr=as.numeric(verr)) %>% 
+    mutate(imag=as.numeric(imag)) %>% 
+    mutate(ierr=as.numeric(ierr)) 
+
+```
+
+We want the objects that have spectral types.  These will be rows where the columns `spt`, the spectral type as classified by eye, and `spt_old`, the spectral type as classified by regression.  
+
+Lets make a column that tells us which stars we classified as probable background giants.
+
+```{r}
+
+
+full.df <- full.df %>% 
+    mutate(giant = ifelse(cagiant == "giant" | nagiant == "giant", "giant", "unclassified"))
+
+
+spt.df <- full.df %>% 
+    filter(is.na(spt)==FALSE & is.na(spt_old)==FALSE)
+    
+
+head(spt.df)
+
+
+plot1 <- spt.df %>% ggplot(aes(x=spt_old,y=spt,color=giant)) +
+    geom_point()
+
+
+plot1
+```
+
+It looks like many of the stars classified as K5/K6 background giants have the wrong spectral classification.
+
+
+Lets look at the distibution of "correct" spectral types of the "background giants".
+
+```{r}
+
+spt.df %>% 
+    filter(giant=="giant") %>% 
+    ggplot(aes(x=spt)) + geom_bar()
+
+```
+
+Ok, so close to 30 K5/K6 stars still remain.  There is almost 30 K7s.
+
+
+
+
+```{r}
+
+
+# g - J
+
+spt.df2 <- spt.df %>% 
+    filter(giant=="giant") %>% 
+    filter(is.na(jmag)==FALSE & is.na(kmag)==FALSE & is.na(gmag)==FALSE) %>% 
+    filter(spt==65 | spt==66 | spt==67) 
+    
+
+spt.df3 <- spt.df2 %>% 
+    mutate(vmag=as.numeric(vmag)) %>%
+    mutate(jmk=jmag-kmag,gmj=gmag-jmag)# %>% 
+    #filter(jmk < 1.75)
+
+ spt.df3 %>% 
+    ggplot(aes(x=jmk, y=gmj)) +
+    geom_point()
+
+fit <- lm(gmj ~ jmk, data = spt.df3)
+
+summary(fit)
+
+# V - J
+
+spt.df2 <- spt.df %>% 
+    filter(giant=="giant") %>% 
+    filter(is.na(jmag)==FALSE & is.na(kmag)==FALSE & is.na(vmag)==FALSE) %>% 
+    filter(spt==65 | spt==66 | spt==67) 
+    
+
+spt.df3 <- spt.df2 %>% 
+    mutate(vmag=as.numeric(vmag)) %>%
+    mutate(jmk=jmag-kmag,vmj=vmag-jmag)# %>% 
+    #filter(jmk < 1.75)
+
+ spt.df3 %>% 
+    ggplot(aes(x=jmk, y=vmj)) +
+    geom_point()
+
+fit <- lm(vmj ~ jmk, data = spt.df3)
+
+summary(fit)
+
+# V - J
+
+spt.df2 <- spt.df %>% 
+    filter(giant=="giant") %>% 
+    filter(is.na(jmag)==FALSE & is.na(kmag)==FALSE & is.na(vmag)==FALSE) %>% 
+    filter(spt==65 | spt==66 | spt==67) 
+    
+
+spt.df3 <- spt.df2 %>% 
+    mutate(vmag=as.numeric(vmag)) %>%
+    mutate(jmk=jmag-kmag,vmj=vmag-jmag) %>% 
+    filter(jmk < 1.75)
+
+ spt.df3 %>% 
+    ggplot(aes(x=jmk, y=vmj)) +
+    geom_point()
+
+fit <- lm(vmj ~ jmk, data = spt.df3)
+
+summary(fit)
+
+# r - J
+
+spt.df2 <- spt.df %>% 
+    filter(giant=="giant") %>% 
+    filter(is.na(jmag)==FALSE & is.na(kmag)==FALSE & is.na(rmag)==FALSE) %>% 
+    filter(spt==65 | spt==66 | spt==67) 
+    
+
+spt.df3 <- spt.df2 %>% 
+    mutate(rmag=as.numeric(rmag)) %>%
+    mutate(jmk=jmag-kmag,rmj=rmag-jmag)# %>% 
+    #filter(jmk < 1.75)
+
+ spt.df3 %>% 
+    ggplot(aes(x=jmk, y=rmj)) +
+    geom_point()
+
+fit <- lm(rmj ~ jmk, data = spt.df3)
+
+summary(fit)
+
+```
+```{r}
+
+
+alam <- function(slope) {
+    
+    alam <- slope * (1 - 0.397) + 1
+    
+    return(alam)
+    
+}
+
+alam(3.9)
+
+alam(3.8)
+
+alam(3.5)
+
+alam(2.8)
+
+
+```
+
