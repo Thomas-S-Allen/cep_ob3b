@@ -434,3 +434,12 @@ cep <- cep + 1
 
 I will take this up further in the `munge` directory.  There you will find info about the preprocessing steps including turing index arrays into categorical variables.
 
+
+Let's not forget the indices and spectral types of the stars used as *standards* for the hectospec spectral typing.
+
+```{bash}
+
+cp /Users/thomasallen/cep_ob3b/data/Spectroscopy/spec_standards.dat /Users/thomasallen/cep_ob3b/cepr/data/spec_standards.dat
+
+```
+

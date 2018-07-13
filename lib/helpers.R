@@ -58,6 +58,9 @@ VvsVmI <- function(df) {
 
 irac1 <- function(df) {
     
+    # Plots [4.5] - [24] vs. [3.6] - [4.5] ccd from data frame
+    # Data frame must have c1mag, c2mag, m24mag and disk columns{{}}
+    
     plot <- df %>% 
         ggplot(aes(x=c2mag-m24mag, y=c1mag-c2mag, color=disk)) +
         geom_point() +
@@ -68,3 +71,43 @@ irac1 <- function(df) {
     
     return(plot)
 }
+
+
+ext_cc_plot_fit <- function(df,c1=vmag,c2=jmag,c3=kmag,xtitle="J - K",ytitle="V - J")  {
+    
+    # Plots X - J vs. J - K and fits a linear model 
+    # Slope of linear model is used to derive Ax/Aj extinction coefficient
+    
+    c1<-enquo(c1)
+    c2<-enquo(c2)
+    c3<-enquo(c3)
+    
+    df.plot <- df %>% 
+        filter(giant=="giant") %>% 
+        filter(member=="non-member") %>% 
+        filter(is.na(!!c2)==FALSE & is.na(!!c3)==FALSE & is.na(!!c1)==FALSE) %>% 
+        filter(spt==65 | spt==66) %>% # | spt==67) 
+        
+        
+        #mutate(c1=as.numeric(c1)) %>%
+        mutate(x=!!c2 - !!c3,y= !!c1 - !!c2) %>% 
+        select(x,y)  
+    #filter(jmk < 1.75)
+    
+    
+    plot <- df.plot %>% 
+        ggplot(aes(x=x,y=y)) +
+        geom_point() +
+        geom_smooth(method='lm') +
+        labs(x=xtitle,y=ytitle)
+    
+    
+    
+    fit <- lm(y ~ x, data = df.plot)
+    print(summary(fit))
+    #print(plot)
+    
+    return(plot)
+    #  
+}
+

@@ -424,4 +424,95 @@ bash: syntax error near unexpected token `sys.version'
 .git		config		logs
 ]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ vim .gitignore
 [?2004h]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ vim .gitignore
-[?2004h
+[KThomass-MacBook-Pro-2:cepr thomasallen$ which python
+/anaconda3/bin/python
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ pwd
+/Users/thomasallen/cep_ob3b/cepr
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ cd\\\[K[K[K[K[Kls
+README.md	cepr.Rproj	diagnostics	lib		profiling	tests
+TODO		config		docs		logs		reports
+cache		data		graphs		munge		src
+]0;~/cep_ob3b/ceprThomass-MacBook-Pro-2:cepr thomasallen$ cd graphs/
+]0;~/cep_ob3b/cepr/graphsThomass-MacBook-Pro-2:graphs thomasallen$ ls
+README.md	VvsVmI_obs.pdf	irac1_obs.pdf
+[KThomass-MacBook-Pro-2:graphs thomasallen$ cd
+]0;~Thomass-MacBook-Pro-2:~ thomasallen$ ls
+00LOCK-rstudio-reticulate-ea5e9b5	Midterm2_solutions.html
+Anaconda3-5.1.0-MacOSX-x86_64.sh	Movies
+Applications				Music
+Aspyr					Pictures
+Code					Public
+Data					Teaching
+Desktop					Websites
+Documents				Writing
+Downloads				Zotero
+Dropbox					cep_ob3b
+Employment				mactex-20180417-2.pkg
+Habernaro				old_Zotero
+Library					testProject
+Midterm2_solutions.Rmd			untitled folder
+]0;~Thomass-MacBook-Pro-2:~ thomasallen$ cd cep_ob3b/cepr/src/python/
+]0;~/cep_ob3b/cepr/src/pythonThomass-MacBook-Pro-2:python thomasallen$ ls
+spectral_template_plot.py
+]0;~/cep_ob3b/cepr/src/pythonThomass-MacBook-Pro-2:python thomasallen$ opython [K[K[K[K[K[K[K[Kwhich python
+/anaconda3/bin/python
+]0;~/cep_ob3b/cepr/src/pythonThomass-MacBook-Pro-2:python thomasallen$ pyhton [K[K[K[K[Kthon spectral_template_plot.py 
+[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
+ 24 25 26 27 28 29 30 31 32 33]
+]0;~/cep_ob3b/cepr/src/pythonThomass-MacBook-Pro-2:python thomasallen$ python spectral_template_plot.py 
+[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
+ 24 25 26 27 28 29 30 31 32 33]
+--Return--
+> /Users/thomasallen/cep_ob3b/cepr/src/python/spectral_template_plot.py(25)<module>()->None
+-> import pdb; pdb.set_trace()
+(Pdb) ls
+*** NameError: name 'ls' is not defined
+(Pdb) print(od[Kff)
+[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
+ 24 25 26 27 28 29 30 31 32 33]
+(Pdb) print(spt)
+col1
+----
+  B5
+  B7
+  B8
+  B9
+ ...
+  M1
+  M2
+  M4
+  M6
+Length = 34 rows
+(Pdb) [K(Pdb) fn
+<Column name='col2' dtype='int64' length=34>
+183198
+139618
+101625
+113690
+184294
+159059
+   ...
+ 59777
+203666
+ 87923
+109905
+ 98146
+(Pdb) fn[0]
+183198
+(Pdb) num[0]
+0.5
+(Pdb) [K(Pdb) 
+Traceback (most recent call last):
+  File "spectral_template_plot.py", line 25, in <module>
+    df = pd.read_csv(standards_fn)
+  File "/anaconda3/lib/python3.6/bdb.py", line 52, in trace_dispatch
+    return self.dispatch_return(frame, arg)
+  File "/anaconda3/lib/python3.6/bdb.py", line 96, in dispatch_return
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+]0;~/cep_ob3b/cepr/src/pythonThomass-MacBook-Pro-2:python thomasallen$ python spectral_template_plot.py 
+Traceback (most recent call last):
+  File "spectral_template_plot.py", line 14, in <module>
+    standards_fn=dir_in+'spec_standards.dat'
+NameError: name 'dir_in' is not defined
+]0;~/cep_ob3b/cepr/src/pythonThomass-MacBook-Pro-2:python thomasallen$ [KThomass-MacBook-Pro-2:python thomasallen$ [KThomass-MacBook-Pro-2:python thomasallen$ [KThomass-MacBook-Pro-2:python thomasallen$ [KThomass-MacBook-Pro-2:python thomasallen$ 
